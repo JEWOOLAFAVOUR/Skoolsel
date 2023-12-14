@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {icons, SIZES, COLORS, FONTS} from '../constants';
 import ProductScreen from '../screen/Main/Product/ProductScreen';
@@ -20,9 +20,14 @@ const BottomTab: React.FC = () => {
           backgroundColor: COLORS.white,
           borderTopWidth: 1,
         },
+        tabBarLabel: ({focused}) => (
+          <Text style={{...FONTS.body5, color: COLORS.black}}>
+            {route.name}
+          </Text>
+        ),
         tabBarIcon: ({focused, size, colour}: TabBarIconParams) => {
           let iconName;
-          if (route.name === 'Product') {
+          if (route.name === 'My Products') {
             iconName = focused ? icons.product : icons.product;
             (size = focused ? SIZES.h3 : SIZES.h3),
               (colour = focused ? COLORS.black : COLORS.black);
@@ -31,8 +36,8 @@ const BottomTab: React.FC = () => {
             <Image
               source={iconName}
               style={{
-                height: SIZES.h1 * 0.9,
-                width: SIZES.h1 * 0.9,
+                height: SIZES.h2,
+                width: SIZES.h2 * 1.14,
                 tintColor: colour,
               }}
             />
@@ -40,7 +45,7 @@ const BottomTab: React.FC = () => {
         },
         headerShown: false,
       })}>
-      <Tab.Screen name="Product" component={ProductScreen} />
+      <Tab.Screen name="My Products" component={ProductScreen} />
     </Tab.Navigator>
   );
 };
