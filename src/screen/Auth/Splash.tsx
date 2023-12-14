@@ -13,7 +13,6 @@ const Splash: React.FC = () => {
 
   return (
     <View style={styles.page}>
-      <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
       <Text style={{...FONTS.h1, color: COLORS.white}}>Skoolsel</Text>
     </View>
   );
