@@ -5,7 +5,7 @@ import {COLORS, SIZES} from '../../../constants';
 const ProductScreen = () => {
   return (
     <View style={styles.page}>
-      <Text>ProductScreen</Text>
+      <Text>ProductScreenss</Text>
     </View>
   );
 };
