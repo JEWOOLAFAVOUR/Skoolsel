@@ -10,22 +10,17 @@ import React, {useState} from 'react';
 import HeaderA from '../../../components/Header/HeaderA';
 import ImageSliderComponent from '../../../components/utils/ImageSliderComponent';
 import {images, icons, FONTS, COLORS, SIZES} from '../../../constants';
-import {
-  productDetails,
-  sliderData,
-} from '../../../components/utils/productDetailsData';
 
 const ProductDetails = ({route}) => {
   const [toogle, setToogle] = useState(false);
-  const data = route?.params?.data;
-  const productData = productDetails;
+  const productData = route?.params?.data;
   return (
     <View style={styles.page}>
       {/* FOR HEADER CAN BE REUSABLE */}
       <HeaderA title="Product details" />
       {/* IMAGE SLIDER */}
       <ScrollView>
-        <ImageSliderComponent imgData={sliderData} />
+        <ImageSliderComponent imgData={productData.productImage} />
         {/* DESCRIPTION AND OTHERS */}
         <View
           style={{paddingHorizontal: SIZES.width * 0.04, paddingTop: SIZES.h1}}>

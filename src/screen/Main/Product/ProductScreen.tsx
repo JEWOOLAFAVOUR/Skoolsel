@@ -12,6 +12,7 @@ import ImageSliderComponent from '../../../components/utils/ImageSliderComponent
 import {useNavigation} from '@react-navigation/native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Modal from 'react-native-modal';
+import {productData} from '../../../components/utils/productDetailsData';
 
 const ProductScreen = () => {
   const navigation = useNavigation();
@@ -38,7 +39,7 @@ const ProductScreen = () => {
   return (
     <View style={styles.page}>
       <FlatList
-        data={['', '', '', '']}
+        data={productData}
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => {
           return (
@@ -55,7 +56,7 @@ const ProductScreen = () => {
                     marginBottom: SIZES.h5,
                   }}>
                   <Image
-                    source={icons.avatar}
+                    source={item.seller.avatar}
                     style={{
                       height: SIZES.h1 * 1.2,
                       width: SIZES.h1 * 1.2,
@@ -70,10 +71,10 @@ const ProductScreen = () => {
                           color: COLORS.black,
                           fontFamily: 'OpenSans-Bold',
                         }}>
-                        @username
+                        @{item.seller.username}
                       </Text>
                       <Image
-                        source={icons.badge}
+                        source={item.seller.verified === true && icons.badge}
                         style={{
                           height: SIZES.h3,
                           width: SIZES.h3,
@@ -87,7 +88,7 @@ const ProductScreen = () => {
                         color: COLORS.black,
                         fontFamily: 'OpenSans-Regular',
                       }}>
-                      Federal university of technology minna
+                      {item.seller.location}
                     </Text>
                   </View>
                   <TouchableOpacity onPress={() => openBottomSheet()}>
@@ -99,7 +100,7 @@ const ProductScreen = () => {
                 </View>
                 <View>
                   {/* SLIDER */}
-                  <ImageSliderComponent imgData={sliderData} />
+                  <ImageSliderComponent imgData={item.productImage} />
                   {/* CATEGORY  */}
                   <View
                     style={{
@@ -115,7 +116,7 @@ const ProductScreen = () => {
                         color: COLORS.black,
                         fontFamily: 'OpenSans-Medium',
                       }}>
-                      Fashion
+                      {item.category}
                     </Text>
                     <TouchableOpacity>
                       <Image
@@ -131,14 +132,14 @@ const ProductScreen = () => {
                       color: COLORS.black,
                       fontFamily: 'OpenSans-Medium',
                     }}>
-                    Clean handbag for your simple walk.
+                    {item.title}
                   </Text>
                   <Text style={{...FONTS.body4b, color: COLORS.black}}>
                     Introducing our sleek and versatile crossbody bag, perfect
                     for any occasion. With multiple compactment
                   </Text>
                   <Text style={{...FONTS.body5a, color: COLORS.black}}>
-                    2hrs ago
+                    {item.createdAt}
                   </Text>
                 </View>
               </View>
