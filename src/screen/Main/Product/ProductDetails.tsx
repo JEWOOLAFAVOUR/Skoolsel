@@ -15,8 +15,9 @@ import {
   sliderData,
 } from '../../../components/utils/productDetailsData';
 
-const ProductDetails = () => {
+const ProductDetails = ({route}) => {
   const [toogle, setToogle] = useState(false);
+  const data = route?.params?.data;
   const productData = productDetails;
   return (
     <View style={styles.page}>

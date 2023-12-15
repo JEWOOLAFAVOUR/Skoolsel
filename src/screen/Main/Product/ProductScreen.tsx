@@ -33,7 +33,9 @@ const ProductScreen = () => {
         renderItem={({item}) => {
           return (
             <TouchableOpacity
-              onPress={() => navigation.navigate('ProductDetails')}
+              onPress={() =>
+                navigation.navigate('ProductDetails', {data: item})
+              }
               style={{marginBottom: SIZES.h2}}>
               <View
                 style={{
