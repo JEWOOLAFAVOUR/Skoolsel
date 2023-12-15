@@ -35,7 +35,7 @@ const ProductDetails = ({route}) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                marginBottom: SIZES.base,
+                // marginBottom: SIZES.base,
               }}>
               <Text
                 style={{
@@ -47,13 +47,13 @@ const ProductDetails = ({route}) => {
               </Text>
               <TouchableOpacity onPress={() => setToogle(!toogle)}>
                 <Image
-                  source={toogle ? icons.bookmark : icons.bookmark2}
+                  source={icons.bookmark}
                   style={{height: SIZES.h1 * 0.9, width: SIZES.h1 * 0.9}}
                 />
               </TouchableOpacity>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={{...FONTS.h3b, color: COLORS.black}}>
+              <Text style={{...FONTS.h3, color: COLORS.black}}>
                 ₦{productData?.price}
               </Text>
               <Text
@@ -68,9 +68,9 @@ const ProductDetails = ({route}) => {
             </View>
             <Text
               style={{
-                ...FONTS.body6,
+                ...FONTS.body5,
                 color: COLORS.chocolate,
-                marginTop: SIZES.base * 0.5,
+                // marginTop: SIZES.base * 0.5,
               }}>
               {productData?.createdAt}
             </Text>
@@ -109,7 +109,7 @@ const ProductDetails = ({route}) => {
                     }}
                   />
                 </View>
-                <Text style={{...FONTS.body6, color: COLORS.black}}>
+                <Text style={{...FONTS.body5a, color: COLORS.black}}>
                   {productData?.seller?.location}
                 </Text>
               </View>
@@ -120,7 +120,7 @@ const ProductDetails = ({route}) => {
           </View>
 
           {/* DESCRIPTION */}
-          <View style={{marginTop: SIZES.h4}}>
+          <View style={{marginTop: SIZES.h5}}>
             <Text style={{...FONTS.body4, color: COLORS.black}}>
               Description
             </Text>
@@ -128,7 +128,6 @@ const ProductDetails = ({route}) => {
               style={{
                 ...FONTS.body5,
                 color: COLORS.chocolate,
-                marginTop: SIZES.base,
               }}>
               {productData?.description}
             </Text>

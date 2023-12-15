@@ -12,6 +12,10 @@ export const COLORS = {
   white: '#fff',
   black: '#181818',
   primary: '#0081C9',
+  orange: '#F41F34',
+  secondary: '#86E5FF',
+  chocolate: '#5d5c6c',
+  chocolateBackground: '#CECFCD',
 };
 
 export const SIZES = {

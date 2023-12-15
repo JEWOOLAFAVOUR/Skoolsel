@@ -24,31 +24,18 @@ const ImageSliderComponent = ({imgData}) => {
           borderRadius: SIZES.h5,
         }}
         activeIndicatorStyle={{
-          backgroundColor: COLORS.black,
+          backgroundColor: COLORS.secondary,
           width: 5.5,
           height: 5.5,
         }}
         inActiveIndicatorStyle={{
-          backgroundColor: COLORS.primary,
+          backgroundColor: COLORS.chocolateBackground,
           width: 5.5,
           height: 5.5,
           borderRadius: SIZES.base,
         }}
         indicatorContainerStyle={{top: SIZES.h1 * 1.2}}
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginTop: SIZES.h5,
-        }}>
-        <Text style={{...FONTS.body4, color: COLORS.black}}>Fashion</Text>
-        <Image
-          source={icons.bookmark}
-          style={{height: SIZES.h3, width: SIZES.h3}}
-        />
-      </View>
     </View>
   );
 };

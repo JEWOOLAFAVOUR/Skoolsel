@@ -6,19 +6,29 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import {COLORS, FONTS, icons, images, SIZES} from '../../../constants';
 import ImageSliderComponent from '../../../components/utils/ImageSliderComponent';
 import {useNavigation} from '@react-navigation/native';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import Modal from 'react-native-modal';
 
 const ProductScreen = () => {
   const navigation = useNavigation();
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const refRBSheet = useRef();
+
+  const openBottomSheet = () => {
+    // setBottomSheetVisible(true);
+    refRBSheet.current.open();
+  };
   const sliderData = [
     {
-      img: 'https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585960/image2_x3fqmf.png',
     },
     {
-      img: 'https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585949/image1_gwseon.png',
     },
     {
       img: 'https://images.pexels.com/photos/15698292/pexels-photo-15698292/free-photo-of-close-up-of-classic-elegant-man-shoes-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -37,73 +47,211 @@ const ProductScreen = () => {
                 navigation.navigate('ProductDetails', {data: item})
               }
               style={{marginBottom: SIZES.h2}}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginBottom: SIZES.h5,
-                }}>
-                <Image
-                  source={icons.avatar}
+              <View style={{paddingHorizontal: SIZES.width * 0.03}}>
+                <View
                   style={{
-                    height: SIZES.h1 * 1.2,
-                    width: SIZES.h1 * 1.2,
-                    borderRadius: 100,
-                  }}
-                />
-                <View style={{marginLeft: SIZES.h5, flex: 1}}>
-                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginBottom: SIZES.h5,
+                  }}>
+                  <Image
+                    source={icons.avatar}
+                    style={{
+                      height: SIZES.h1 * 1.2,
+                      width: SIZES.h1 * 1.2,
+                      borderRadius: 100,
+                    }}
+                  />
+                  <View style={{marginLeft: SIZES.base, flex: 1}}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <Text
+                        style={{
+                          fontSize: SIZES.h4,
+                          color: COLORS.black,
+                          fontFamily: 'OpenSans-Bold',
+                        }}>
+                        @username
+                      </Text>
+                      <Image
+                        source={icons.badge}
+                        style={{
+                          height: SIZES.h3,
+                          width: SIZES.h3,
+                          marginLeft: SIZES.base * 0.5,
+                        }}
+                      />
+                    </View>
                     <Text
                       style={{
-                        fontSize: SIZES.h4,
+                        fontSize: SIZES.body5 * 0.9,
                         color: COLORS.black,
-                        fontFamily: 'OpenSans-Bold',
+                        fontFamily: 'OpenSans-Regular',
                       }}>
-                      @username
+                      Federal university of technology minna
                     </Text>
-                    <Image
-                      source={icons.badge}
-                      style={{
-                        height: SIZES.h3,
-                        width: SIZES.h3,
-                        marginLeft: SIZES.base * 0.5,
-                      }}
-                    />
                   </View>
+                  <TouchableOpacity onPress={() => openBottomSheet()}>
+                    <Image
+                      source={icons.verticalmenu}
+                      style={{height: SIZES.h3, width: SIZES.h3}}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  {/* SLIDER */}
+                  <ImageSliderComponent imgData={sliderData} />
+                  {/* CATEGORY  */}
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      marginTop: SIZES.h5,
+                      marginBottom: SIZES.base,
+                    }}>
+                    <Text
+                      style={{
+                        ...FONTS.body4,
+                        color: COLORS.black,
+                        fontFamily: 'OpenSans-Medium',
+                      }}>
+                      Fashion
+                    </Text>
+                    <TouchableOpacity>
+                      <Image
+                        source={icons.bookmark}
+                        style={{height: SIZES.h2 * 1.1, width: SIZES.h2 * 1.1}}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                  {/* DETAILS */}
                   <Text
                     style={{
-                      fontSize: SIZES.body5 * 0.9,
+                      ...FONTS.body4,
                       color: COLORS.black,
-                      fontFamily: 'OpenSans-Regular',
+                      fontFamily: 'OpenSans-Medium',
                     }}>
-                    Federal university of technology minna
+                    Clean handbag for your simple walk.
+                  </Text>
+                  <Text style={{...FONTS.body4b, color: COLORS.black}}>
+                    Introducing our sleek and versatile crossbody bag, perfect
+                    for any occasion. With multiple compactment
+                  </Text>
+                  <Text style={{...FONTS.body5a, color: COLORS.black}}>
+                    2hrs ago
                   </Text>
                 </View>
-                <TouchableOpacity>
-                  <Image
-                    source={icons.verticalmenu}
-                    style={{height: SIZES.h3, width: SIZES.h3}}
-                  />
-                </TouchableOpacity>
               </View>
-              <View>
-                {/* SLIDER */}
-                <ImageSliderComponent imgData={sliderData} />
-                {/* DETAILS */}
-                <Text>Clean handbag for your simple walk.</Text>
-                <Text style={{...FONTS.body4, color: COLORS.black}}>
-                  Introducing our sleek and versatile crossbody bag, perfect for
-                  any occasion. With multiple compactment
-                </Text>
-                <Text style={{...FONTS.body4, color: COLORS.black}}>
-                  2hrs ago
-                </Text>
-              </View>
-              <View style={{height: 1, backgroundColor: COLORS.black}} />
+              <View
+                style={{
+                  height: 1,
+                  backgroundColor: COLORS.chocolateBackground,
+                  marginTop: SIZES.h4,
+                }}
+              />
             </TouchableOpacity>
           );
         }}
       />
+      {/* BOTTOM SHEET  */}
+      <RBSheet
+        ref={refRBSheet}
+        closeOnDragDown={true}
+        height={SIZES.height * 0.3}
+        customStyles={{
+          container: {
+            borderTopLeftRadius: SIZES.h3 * 1.1,
+            borderTopRightRadius: SIZES.h3 * 1.1,
+          },
+        }}>
+        <View
+          style={{paddingHorizontal: SIZES.width * 0.05, paddingTop: SIZES.h4}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
+            <Text style={{...FONTS.body4, color: COLORS.chocolate}}>Menu</Text>
+            <TouchableOpacity onPress={() => refRBSheet.current.close()}>
+              <Image
+                source={icons.close}
+                style={{height: SIZES.h4 * 1.1, width: SIZES.h4 * 1.1}}
+              />
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity style={{marginTop: SIZES.h1}}>
+            <Text style={styles.bottomText}>Edit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setIsModalVisible(true);
+              refRBSheet.current.close();
+            }}
+            style={{marginTop: SIZES.h2}}>
+            <Text style={[styles.bottomText, {color: 'red'}]}>Delete</Text>
+          </TouchableOpacity>
+        </View>
+      </RBSheet>
+      {/* MODAL */}
+      <Modal isVisible={isModalVisible}>
+        <View style={styles.modalCtn}>
+          <Text
+            style={{
+              ...FONTS.body3,
+              color: COLORS.black,
+              fontFamily: 'OpenSans-Medium',
+            }}>
+            Delete Product
+          </Text>
+          <Text style={{...FONTS.body5, color: COLORS.black}}>
+            Are you sure you want to delete this product?
+          </Text>
+          {/* PICTURE  */}
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: SIZES.h2,
+            }}>
+            <Image
+              source={images.image1}
+              style={{
+                height: SIZES.h1 * 2,
+                width: SIZES.h1 * 2,
+                borderRadius: SIZES.base,
+              }}
+            />
+            <View style={{marginLeft: SIZES.base}}>
+              <Text
+                style={{
+                  ...FONTS.body5,
+                  color: COLORS.black,
+                  fontFamily: 'OpenSans-Medium',
+                }}>
+                Clean handbag for your simple walk.
+              </Text>
+              <Text style={{...FONTS.body5, color: COLORS.black}}>N20,000</Text>
+            </View>
+          </View>
+          {/* BUTTONS */}
+          <TouchableOpacity style={styles.modalBtn}>
+            <Text style={{...FONTS.body4, color: COLORS.white}}>
+              Yes, Delete
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setIsModalVisible(false)}>
+            <Text
+              style={{
+                ...FONTS.body4,
+                color: COLORS.primary,
+                textAlign: 'center',
+              }}>
+              Cancel
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -115,6 +263,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
     paddingTop: SIZES.h5,
-    paddingHorizontal: SIZES.width * 0.05,
+  },
+  bottomText: {
+    color: COLORS.black,
+    ...FONTS.body3,
+  },
+  modalCtn: {
+    height: SIZES.height * 0.37,
+    width: SIZES.width * 0.88,
+    backgroundColor: COLORS.white,
+    alignSelf: 'center',
+    borderRadius: SIZES.h4,
+    paddingHorizontal: SIZES.width * 0.04,
+    justifyContent: 'center',
+  },
+  modalBtn: {
+    height: SIZES.h1 * 1.7,
+    backgroundColor: COLORS.orange,
+    borderRadius: SIZES.h1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: SIZES.h1,
+    marginBottom: SIZES.h4,
   },
 });

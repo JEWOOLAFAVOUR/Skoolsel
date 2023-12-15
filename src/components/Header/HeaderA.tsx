@@ -2,12 +2,16 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import icons from '../../constants/icons';
+import {useNavigation} from '@react-navigation/native';
 
 const HeaderA = ({title}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <TouchableOpacity style={{marginRight: SIZES.h3}}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{marginRight: SIZES.h3}}>
           <Image
             source={icons.arrowleft}
             style={{height: SIZES.h1 * 0.9, width: SIZES.h1 * 0.9}}
