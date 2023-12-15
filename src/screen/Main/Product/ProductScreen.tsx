@@ -9,8 +9,10 @@ import {
 import React from 'react';
 import {COLORS, FONTS, icons, images, SIZES} from '../../../constants';
 import ImageSliderComponent from '../../../components/utils/ImageSliderComponent';
+import {useNavigation} from '@react-navigation/native';
 
 const ProductScreen = () => {
+  const navigation = useNavigation();
   const sliderData = [
     {
       img: 'https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -30,7 +32,9 @@ const ProductScreen = () => {
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => {
           return (
-            <View style={{marginBottom: SIZES.h2}}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ProductDetails')}
+              style={{marginBottom: SIZES.h2}}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -94,7 +98,7 @@ const ProductScreen = () => {
                 </Text>
               </View>
               <View style={{height: 1, backgroundColor: COLORS.black}} />
-            </View>
+            </TouchableOpacity>
           );
         }}
       />

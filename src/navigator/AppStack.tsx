@@ -10,7 +10,7 @@ const AppStack = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Bottom" component={BottomTab} />
       {/* HOME */}
-      <Stack.Screen name="ProductDetail" component={ProductDetails} />
+      <Stack.Screen name="ProductDetails" component={ProductDetails} />
     </Stack.Navigator>
   );
 };
