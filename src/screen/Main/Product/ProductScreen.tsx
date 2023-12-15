@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {COLORS, FONTS, icons, images, SIZES} from '../../../constants';
 import ImageSliderComponent from '../../../components/utils/ImageSliderComponent';
 import {useNavigation} from '@react-navigation/native';
@@ -19,21 +19,64 @@ const ProductScreen = () => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const refRBSheet = useRef();
+  const [product, setProduct] = useState([]);
 
   const openBottomSheet = () => {
     // setBottomSheetVisible(true);
     refRBSheet.current.open();
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setProduct(productData);
+    }, 1000);
+  }, []);
+
   const RenderEmpty = () => {
-    return <View></View>;
+    return (
+      <View style={{alignItems: 'center', marginTop: SIZES.height * 0.1}}>
+        <Image
+          source={icons.empty}
+          style={{height: SIZES.height * 0.3, width: SIZES.width * 0.55}}
+        />
+        <Text
+          style={{
+            ...FONTS.body2,
+            fontFamily: 'OpenSans-Medium',
+            color: COLORS.black,
+            marginTop: SIZES.h1 * 1.3,
+          }}>
+          No post yet
+        </Text>
+        <Text
+          style={{
+            ...FONTS.body4,
+            color: COLORS.black,
+            marginHorizontal: SIZES.h1 * 2,
+            textAlign: 'center',
+          }}>
+          When you post products they will appears here.
+        </Text>
+        <TouchableOpacity
+          style={[
+            styles.modalBtn,
+            {backgroundColor: COLORS.primary, width: SIZES.width * 0.8},
+          ]}>
+          <Text style={{...FONTS.body3, color: COLORS.white}}>
+            Post a product
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
   };
 
   return (
     <View style={styles.page}>
       <FlatList
-        data={productData}
+        // data={productData}
+        data={product}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={RenderEmpty}
         renderItem={({item}) => {
           return (
             <TouchableOpacity
