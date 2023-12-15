@@ -13,7 +13,10 @@ const Splash: React.FC = () => {
 
   return (
     <View style={styles.page}>
-      <Text style={{...FONTS.h1, color: COLORS.white}}>Skoolsel</Text>
+      <Image
+        source={images.logo}
+        style={{height: SIZES.height * 0.071, width: SIZES.width * 0.7}}
+      />
     </View>
   );
 };
@@ -26,5 +29,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.primary,
+    paddingHorizontal: SIZES.width * 0.1,
   },
 });

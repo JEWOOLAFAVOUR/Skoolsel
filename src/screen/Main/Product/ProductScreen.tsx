@@ -24,17 +24,10 @@ const ProductScreen = () => {
     // setBottomSheetVisible(true);
     refRBSheet.current.open();
   };
-  const sliderData = [
-    {
-      img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585960/image2_x3fqmf.png',
-    },
-    {
-      img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585949/image1_gwseon.png',
-    },
-    {
-      img: 'https://images.pexels.com/photos/15698292/pexels-photo-15698292/free-photo-of-close-up-of-classic-elegant-man-shoes-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    },
-  ];
+
+  const RenderEmpty = () => {
+    return <View></View>;
+  };
 
   return (
     <View style={styles.page}>
@@ -100,7 +93,14 @@ const ProductScreen = () => {
                 </View>
                 <View>
                   {/* SLIDER */}
-                  <ImageSliderComponent imgData={item.productImage} />
+                  <View>
+                    <ImageSliderComponent imgData={item.productImage} />
+                    <View style={styles.priceCtn}>
+                      <Text style={{...FONTS.body4, color: COLORS.white}}>
+                        ₦{item.price}
+                      </Text>
+                    </View>
+                  </View>
                   {/* CATEGORY  */}
                   <View
                     style={{
@@ -286,5 +286,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: SIZES.h1,
     marginBottom: SIZES.h4,
+  },
+  priceCtn: {
+    height: SIZES.h1,
+    width: SIZES.h1 * 3.2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: SIZES.h1,
+    backgroundColor: COLORS.black,
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    top: SIZES.h3,
+    right: SIZES.h5,
   },
 });
