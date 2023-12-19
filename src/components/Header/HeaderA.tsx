@@ -4,10 +4,10 @@ import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import icons from '../../constants/icons';
 import {useNavigation} from '@react-navigation/native';
 
-const HeaderA = ({title}) => {
+const HeaderA = ({title, vertical}) => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, btnCtn]}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -26,12 +26,14 @@ const HeaderA = ({title}) => {
           {title}
         </Text>
       </View>
-      <TouchableOpacity>
-        <Image
-          source={icons.verticalmenu}
-          style={{height: SIZES.h3, width: SIZES.h3 * 1.1}}
-        />
-      </TouchableOpacity>
+      {vertical && (
+        <TouchableOpacity>
+          <Image
+            source={icons.verticalmenu}
+            style={{height: SIZES.h3, width: SIZES.h3 * 1.1}}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -43,7 +45,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: SIZES.width * 0.04,
     paddingBottom: SIZES.h3,
     paddingTop: SIZES.base,
   },

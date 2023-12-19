@@ -17,7 +17,11 @@ const ProductDetails = ({route}) => {
   return (
     <View style={styles.page}>
       {/* FOR HEADER CAN BE REUSABLE */}
-      <HeaderA title="Product details" />
+      <HeaderA
+        title="Product details"
+        vertical={true}
+        btnCtn={{paddingHorizontal: SIZES.width * 0.04}}
+      />
       {/* IMAGE SLIDER */}
       <ScrollView>
         <ImageSliderComponent imgData={productData.productImage} />

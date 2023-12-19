@@ -1,9 +1,11 @@
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES, icons, images, FONTS} from '../../constants';
-import FormButton from '../../components/Button/FormButton';
+import {COLORS, SIZES, icons, images, FONTS} from '../../../constants';
+import FormButton from '../../../components/Button/FormButton';
+import {useNavigation} from '@react-navigation/native';
 
 const VerificationScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.page}>
       <View style={{flex: 1}}>
@@ -18,8 +20,8 @@ const VerificationScreen = () => {
           />
         </View>
         <View>
-          <Text>Verify</Text>
-          <Text>your identity</Text>
+          <Text style={{...FONTS.h2, color: COLORS.black}}>Verify</Text>
+          <Text style={{...FONTS.h2, color: COLORS.black}}>your identity</Text>
           <Text style={{...FONTS.body4, color: COLORS.black}}>
             To ensure a trustworthy and secure marketlace, we require{' '}
             <Text style={{...FONTS.h4}}>account verification</Text> for posting
@@ -28,7 +30,10 @@ const VerificationScreen = () => {
           </Text>
         </View>
       </View>
-      <FormButton title="Get started" />
+      <FormButton
+        title="Get started"
+        onPress={() => navigation.navigate('VerificationType')}
+      />
     </View>
   );
 };
