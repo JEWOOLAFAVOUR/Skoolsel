@@ -31,28 +31,34 @@ const VerificationType = () => {
   ];
   return (
     <View style={styles.page}>
-      <HeaderA />
-      <Text style={{...FONTS.h1, color: COLORS.black}}>Photo of your ID</Text>
-      <Text style={{...FONTS.body3, color: COLORS.black}}>
-        Choose which type of documents you're going to use.
-      </Text>
       <View>
-        <FlatList
-          data={verificationData}
-          renderItem={({item}) => {
-            return (
-              <View style={styles.container}>
-                <Text style={{...FONTS.body3, color: COLORS.black}}>
-                  {item.title}
-                </Text>
-                <Image
-                  source={icons.arrowright}
-                  style={{height: SIZES.h3, width: SIZES.h3}}
-                />
-              </View>
-            );
-          }}
-        />
+        <HeaderA />
+        <Text style={{...FONTS.h1, color: COLORS.black}}>Photo of your ID</Text>
+        <Text style={{...FONTS.body3, color: COLORS.black}}>
+          Choose which type of documents you're going to use.
+        </Text>
+        <View>
+          <FlatList
+            data={verificationData}
+            renderItem={({item}) => {
+              return (
+                <View style={styles.container}>
+                  <Text style={{...FONTS.body3, color: COLORS.black}}>
+                    {item.title}
+                  </Text>
+                  <Image
+                    source={icons.arrowright}
+                    style={{height: SIZES.h3, width: SIZES.h3}}
+                  />
+                </View>
+              );
+            }}
+          />
+        </View>
+      </View>
+      {/* MESSAGE */}
+      <View>
+        <Image source={icons.lock} />
       </View>
     </View>
   );
