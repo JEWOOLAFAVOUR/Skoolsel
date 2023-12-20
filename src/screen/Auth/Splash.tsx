@@ -7,7 +7,8 @@ const Splash: React.FC = () => {
   const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('AppStack', {screen: 'Bottom'});
+      // navigation.navigate('AppStack', {screen: 'Bottom'});
+      navigation.navigate('VerificationScreen');
     }, 1000);
   }, []);
 

@@ -24,7 +24,7 @@ export default ProductInput;
 
 const styles = StyleSheet.create({
   container: {
-    height: SIZES.h1 * 1.7,
+    height: SIZES.h1 * 1.9,
     borderRadius: SIZES.base * 0.8,
     backgroundColor: COLORS.offwhite,
     marginBottom: SIZES.h3,

@@ -15,7 +15,7 @@ const UploadScreenDetails = () => {
         <ProductInput placeholder="Category" />
         <ProductInput placeholder="Select Category" />
         <ProductInput placeholder="Condition" />
-        <ProductInput placeholder="Enter amount" />
+        <ProductInput placeholder="₦ Enter amount" />
         <ProductInput placeholder="Product description" />
         {/* BUTTON */}
         <View style={{marginTop: SIZES.h2}}>

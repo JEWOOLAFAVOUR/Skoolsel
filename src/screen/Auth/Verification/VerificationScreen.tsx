@@ -1,4 +1,11 @@
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import {COLORS, SIZES, icons, images, FONTS} from '../../../constants';
 import FormButton from '../../../components/Button/FormButton';
@@ -8,20 +15,41 @@ const VerificationScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.page}>
+      <StatusBar backgroundColor={COLORS.white} barStyle="dark-content" />
       <View style={{flex: 1}}>
         <View>
-          <Image
-            source={icons.close}
-            style={{height: SIZES.h1, width: SIZES.h1, alignSelf: 'flex-end'}}
-          />
+          <TouchableOpacity>
+            <Image
+              source={icons.close}
+              style={{
+                height: SIZES.h2 * 0.8,
+                width: SIZES.h2 * 0.8,
+                alignSelf: 'flex-end',
+              }}
+            />
+          </TouchableOpacity>
           <Image
             source={images.image3}
-            style={{height: SIZES.height * 0.3, width: SIZES.width * 0.6}}
+            style={{height: SIZES.height * 0.33, width: SIZES.width * 0.82}}
           />
         </View>
         <View>
-          <Text style={{...FONTS.h2, color: COLORS.black}}>Verify</Text>
-          <Text style={{...FONTS.h2, color: COLORS.black}}>your identity</Text>
+          <Text
+            style={{
+              ...FONTS.h1,
+              color: COLORS.black,
+              fontFamily: 'OpenSans-Medium',
+            }}>
+            Verify
+          </Text>
+          <Text
+            style={{
+              ...FONTS.h1,
+              color: COLORS.black,
+              fontFamily: 'OpenSans-Medium',
+            }}>
+            your identity
+          </Text>
           <Text style={{...FONTS.body4, color: COLORS.black}}>
             To ensure a trustworthy and secure marketlace, we require{' '}
             <Text style={{...FONTS.h4}}>account verification</Text> for posting
@@ -45,6 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
     paddingHorizontal: SIZES.width * 0.05,
-    paddingBottom: SIZES.h4,
+    paddingTop: SIZES.h3,
+    paddingBottom: SIZES.h3,
   },
 });
