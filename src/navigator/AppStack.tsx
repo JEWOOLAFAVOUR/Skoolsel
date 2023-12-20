@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomTab from './BottomTab';
 import ProductDetails from '../screen/Main/Product/ProductDetails';
 import {COLORS} from '../constants';
+import UploadScreen from '../screen/Main/Product/Upload/UploadScreen';
 
 const AppStack = () => {
   const Stack = createNativeStackNavigator();
@@ -14,6 +15,7 @@ const AppStack = () => {
         <Stack.Screen name="Bottom" component={BottomTab} />
         {/* HOME */}
         <Stack.Screen name="ProductDetails" component={ProductDetails} />
+        <Stack.Screen name="UploadScreen" component={UploadScreen} />
       </Stack.Navigator>
     </>
   );

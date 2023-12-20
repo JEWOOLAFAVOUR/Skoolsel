@@ -4,7 +4,7 @@ import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import icons from '../../constants/icons';
 import {useNavigation} from '@react-navigation/native';
 
-const HeaderA = ({title, vertical}) => {
+const HeaderA = ({title, vertical, btnCtn}) => {
   const navigation = useNavigation();
   return (
     <View style={[styles.container, btnCtn]}>
