@@ -12,6 +12,7 @@ export const COLORS = {
   white: '#fff',
   black: '#181818',
   cream: '#E0F8FF',
+  offwhite: '#F1F1F1',
   primary: '#0081C9',
   orange: '#F41F34',
   secondary: '#86E5FF',
