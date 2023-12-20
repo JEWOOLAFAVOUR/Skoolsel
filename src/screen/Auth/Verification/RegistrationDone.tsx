@@ -15,7 +15,7 @@ const RegistrationDone = () => {
   const navigation = useNavigation();
 
   const handleNext = () => {
-    navigation.navigate('AppStack', {screen: 'Bottom'});
+    navigation.replace('AppStack', {screen: 'Bottom'});
   };
 
   return (

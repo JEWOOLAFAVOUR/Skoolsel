@@ -203,14 +203,17 @@ const ProductScreen = () => {
           }}
         />
         {/* ADD ICON  */}
-        <TouchableOpacity
-          onPress={() => navigation.navigate('UploadScreen')}
-          style={{position: 'absolute', bottom: SIZES.h3, right: SIZES.h4}}>
-          <Image
-            source={icons.bigadd}
-            style={{height: SIZES.h1 * 2, width: SIZES.h1 * 2}}
-          />
-        </TouchableOpacity>
+        {product.length > 0 && (
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('UploadScreen')}
+            style={{position: 'absolute', bottom: SIZES.h3, right: SIZES.h4}}>
+            <Image
+              source={icons.bigadd}
+              style={{height: SIZES.h1 * 2, width: SIZES.h1 * 2}}
+            />
+          </TouchableOpacity>
+        )}
       </View>
       {/* BOTTOM SHEET  */}
       <RBSheet

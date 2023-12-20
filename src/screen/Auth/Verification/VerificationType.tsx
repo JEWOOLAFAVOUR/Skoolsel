@@ -66,6 +66,7 @@ const VerificationType = () => {
             ...FONTS.h1,
             color: COLORS.black,
             fontFamily: 'Quicksand-Bold',
+            marginTop: SIZES.h5,
           }}>
           Photo of your ID
         </Text>

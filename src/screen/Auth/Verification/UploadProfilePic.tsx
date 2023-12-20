@@ -50,6 +50,7 @@ const UploadProfilePic = () => {
             color: COLORS.black,
             fontFamily: 'Quicksand-Bold',
             marginRight: SIZES.h1 * 3,
+            marginTop: SIZES.h5,
           }}>
           Thank you, now time for a photo of you
         </Text>

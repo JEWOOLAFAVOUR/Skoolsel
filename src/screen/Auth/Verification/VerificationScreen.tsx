@@ -30,7 +30,11 @@ const VerificationScreen = () => {
           </TouchableOpacity>
           <Image
             source={images.image3}
-            style={{height: SIZES.height * 0.33, width: SIZES.width * 0.82}}
+            style={{
+              height: SIZES.height * 0.307,
+              width: SIZES.width * 0.76,
+              marginTop: SIZES.h2,
+            }}
           />
         </View>
         <View style={{marginTop: SIZES.h1 * 1.2}}>
@@ -39,7 +43,7 @@ const VerificationScreen = () => {
               ...FONTS.h1,
               fontSize: SIZES.h1 * 1.3,
               color: COLORS.black,
-              fontFamily: 'Quicksand-Medium',
+              fontFamily: 'Quicksand-Bold',
             }}>
             Verify
           </Text>
@@ -48,7 +52,7 @@ const VerificationScreen = () => {
               ...FONTS.h1,
               fontSize: SIZES.h1 * 1.3,
               color: COLORS.black,
-              fontFamily: 'Quicksand-Medium',
+              fontFamily: 'Quicksand-Bold',
             }}>
             your identity
           </Text>

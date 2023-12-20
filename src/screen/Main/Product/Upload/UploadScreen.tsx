@@ -120,7 +120,7 @@ const UploadScreen = () => {
                 ...FONTS.h1,
                 fontSize: SIZES.h1 * 1.2,
                 color: COLORS.black,
-                fontFamily: 'OpenSans-Medium',
+                fontFamily: 'Quicksand-Bold',
                 marginTop: SIZES.h1,
               }}>
               Let's start
@@ -130,7 +130,7 @@ const UploadScreen = () => {
                 ...FONTS.h1,
                 fontSize: SIZES.h1 * 1.2,
                 color: COLORS.black,
-                fontFamily: 'OpenSans-Medium',
+                fontFamily: 'Quicksand-Bold',
                 marginRight: SIZES.h1,
               }}>
               by adding photos of your product
