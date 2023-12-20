@@ -27,14 +27,14 @@ const UploadScreenDetails = () => {
           placeholder="Product description"
           btnCtn={{height: SIZES.h1 * 5}}
         />
-        {/* <RNPickerSelect
+        <RNPickerSelect
           onValueChange={value => console.log(value)}
           items={[
             {label: 'Football', value: 'football'},
             {label: 'Baseball', value: 'baseball'},
             {label: 'Hockey', value: 'hockey'},
           ]}
-        /> */}
+        />
         {/* BUTTON */}
         <View style={{marginTop: SIZES.h2}}>
           <FormButton
