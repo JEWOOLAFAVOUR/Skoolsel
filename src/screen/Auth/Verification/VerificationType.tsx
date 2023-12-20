@@ -6,13 +6,16 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {COLORS, SIZES, FONTS, icons} from '../../../constants';
 import HeaderA from '../../../components/Header/HeaderA';
 import {useNavigation} from '@react-navigation/native';
+import {launchCamera} from 'react-native-image-picker';
 
 const VerificationType = () => {
   const navigation = useNavigation();
+  const [selectedImage, setSelectedImage] = useState(null);
+  console.log('selected image', selectedImage);
   const verificationData = [
     {
       id: 1,
@@ -33,7 +36,25 @@ const VerificationType = () => {
   ];
 
   const handleNext = () => {
-    navigation.navigate('UploadProfilePic');
+    launchCamera(
+      {
+        mediaType: 'photo',
+        cameraType: 'back',
+      },
+      response => {
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        } else {
+          const source = {uri: response.uri};
+          setSelectedImage(source);
+          navigation.navigate('UploadProfilePic');
+        }
+      },
+    );
   };
 
   return (

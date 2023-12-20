@@ -6,17 +6,38 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {COLORS, SIZES, icons, images, FONTS} from '../../../constants';
 import FormButton from '../../../components/Button/FormButton';
 import {useNavigation} from '@react-navigation/native';
 import HeaderA from '../../../components/Header/HeaderA';
+import {launchCamera} from 'react-native-image-picker';
 
 const UploadProfilePic = () => {
   const navigation = useNavigation();
+  const [selectedImage, setSelectedImage] = useState(null);
+  console.log('selected image', selectedImage);
 
   const handleNext = () => {
-    navigation.navigate('RegistrationDone');
+    launchCamera(
+      {
+        mediaType: 'photo',
+        cameraType: 'front',
+      },
+      response => {
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        } else {
+          const source = {uri: response.uri};
+          setSelectedImage(source);
+          navigation.navigate('RegistrationDone');
+        }
+      },
+    );
   };
 
   return (
