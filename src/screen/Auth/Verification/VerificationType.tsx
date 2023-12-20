@@ -52,7 +52,7 @@ const VerificationType = () => {
           // console.log('ressponse', response);
           const source = {uri: response?.assets[0].uri};
           setSelectedImage(source);
-          navigation.navigate('UploadProfilePic');
+          navigation.navigate('UploadProfilePic', {data: selectedImage});
         }
       },
     );

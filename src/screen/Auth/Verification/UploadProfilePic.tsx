@@ -13,8 +13,9 @@ import {useNavigation} from '@react-navigation/native';
 import HeaderA from '../../../components/Header/HeaderA';
 import {launchCamera} from 'react-native-image-picker';
 
-const UploadProfilePic = () => {
+const UploadProfilePic = ({route}) => {
   const navigation = useNavigation();
+  const data = route?.params?.data;
   const [selectedImage, setSelectedImage] = useState(null);
   console.log('selected profile pic', selectedImage);
 
