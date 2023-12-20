@@ -13,7 +13,8 @@ const ProductInput = ({placeholder, btnCtn}) => {
     <View style={[styles.container, btnCtn]}>
       <TextInput
         placeholder={placeholder}
-        placeholderTextColor="#666666"
+        // placeholderTextColor="#666666"
+        placeholderTextColor={COLORS.chocolate}
         style={{...FONTS.body3c, color: COLORS.black}}
       />
     </View>

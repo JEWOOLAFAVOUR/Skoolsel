@@ -5,9 +5,6 @@ import {ImageSlider} from 'react-native-image-slider-banner';
 import {icons} from '../../constants';
 
 const ImageSliderComponent = ({imgData}) => {
-  const A = () => {
-    return <Text>AAAAAAAss</Text>;
-  };
   return (
     <View>
       <ImageSlider
@@ -39,7 +36,6 @@ const ImageSliderComponent = ({imgData}) => {
         }}
         indicatorContainerStyle={{top: SIZES.h1 * 1.2}}
         autoplayInterval={4000}
-        ImageComponent={A}
       />
     </View>
   );

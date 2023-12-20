@@ -141,8 +141,8 @@ const UploadScreen = () => {
               <Image
                 source={icons.camera}
                 style={{
-                  height: SIZES.h1 * 1.2,
-                  width: SIZES.h1 * 1.42,
+                  height: SIZES.h1 * 1.21,
+                  width: SIZES.h1 * 1.45,
                   marginBottom: SIZES.h5,
                 }}
               />
