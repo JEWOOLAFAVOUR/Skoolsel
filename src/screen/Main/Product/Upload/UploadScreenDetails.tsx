@@ -11,6 +11,7 @@ import HeaderA from '../../../../components/Header/HeaderA';
 import FormButton from '../../../../components/Button/FormButton';
 import {useNavigation} from '@react-navigation/native';
 import ProductInput from '../../../../components/Input/ProductInput';
+import RNPickerSelect from 'react-native-picker-select';
 
 const UploadScreenDetails = () => {
   const navigation = useNavigation();
@@ -26,6 +27,14 @@ const UploadScreenDetails = () => {
           placeholder="Product description"
           btnCtn={{height: SIZES.h1 * 5}}
         />
+        {/* <RNPickerSelect
+          onValueChange={value => console.log(value)}
+          items={[
+            {label: 'Football', value: 'football'},
+            {label: 'Baseball', value: 'baseball'},
+            {label: 'Hockey', value: 'hockey'},
+          ]}
+        /> */}
         {/* BUTTON */}
         <View style={{marginTop: SIZES.h2}}>
           <FormButton

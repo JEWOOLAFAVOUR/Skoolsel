@@ -18,7 +18,8 @@ const VerificationScreen = () => {
       <StatusBar backgroundColor={COLORS.white} barStyle="dark-content" />
       <View style={{flex: 1}}>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.replace('AppStack', {screen: 'Bottom'})}>
             <Image
               source={icons.close}
               style={{
