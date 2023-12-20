@@ -33,28 +33,38 @@ const VerificationScreen = () => {
             style={{height: SIZES.height * 0.33, width: SIZES.width * 0.82}}
           />
         </View>
-        <View>
+        <View style={{marginTop: SIZES.h1 * 1.2}}>
           <Text
             style={{
               ...FONTS.h1,
+              fontSize: SIZES.h1 * 1.3,
               color: COLORS.black,
-              fontFamily: 'OpenSans-Medium',
+              fontFamily: 'Quicksand-Medium',
             }}>
             Verify
           </Text>
           <Text
             style={{
               ...FONTS.h1,
+              fontSize: SIZES.h1 * 1.3,
               color: COLORS.black,
-              fontFamily: 'OpenSans-Medium',
+              fontFamily: 'Quicksand-Medium',
             }}>
             your identity
           </Text>
-          <Text style={{...FONTS.body4, color: COLORS.black}}>
-            To ensure a trustworthy and secure marketlace, we require{' '}
-            <Text style={{...FONTS.h4}}>account verification</Text> for posting
-            products, prioritising for posting products, prioritising the safety
-            and satisfaction of our users.
+          <Text
+            style={{
+              ...FONTS.body4,
+              fontSize: SIZES.body4 * 0.98,
+              color: '#181818',
+              marginTop: SIZES.h1 * 1.2,
+            }}>
+            To ensure a trustworthy and secure marketplace, we require{' '}
+            <Text style={{...FONTS.h4, color: COLORS.black}}>
+              account verification
+            </Text>{' '}
+            for posting products, prioritising for posting products,
+            prioritising the safety and satisfaction of our users.
           </Text>
         </View>
       </View>
@@ -74,6 +84,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     paddingHorizontal: SIZES.width * 0.05,
     paddingTop: SIZES.h3,
-    paddingBottom: SIZES.h3,
+    paddingBottom: SIZES.h1,
   },
 });

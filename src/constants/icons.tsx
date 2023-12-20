@@ -5,6 +5,7 @@ export const badge = require('../../assets/icons/badge.png');
 export const bigadd = require('../../assets/icons/bigadd.png');
 export const bookmark = require('../../assets/icons/bookmark.png');
 export const camera = require('../../assets/icons/camera.png');
+export const check = require('../../assets/icons/check.png');
 export const close = require('../../assets/icons/close.png');
 export const empty = require('../../assets/icons/empty.png');
 export const lock = require('../../assets/icons/lock.png');
@@ -20,6 +21,7 @@ export default {
   bigadd,
   bookmark,
   camera,
+  check,
   close,
   empty,
   lock,
