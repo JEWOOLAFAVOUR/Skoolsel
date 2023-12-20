@@ -15,7 +15,7 @@ import {launchCamera} from 'react-native-image-picker';
 const VerificationType = () => {
   const navigation = useNavigation();
   const [selectedImage, setSelectedImage] = useState(null);
-  console.log('selected image', selectedImage);
+  console.log('selected photo id', selectedImage);
   const verificationData = [
     {
       id: 1,
@@ -49,7 +49,8 @@ const VerificationType = () => {
         } else if (response.customButton) {
           console.log('User tapped custom button: ', response.customButton);
         } else {
-          const source = {uri: response.uri};
+          // console.log('ressponse', response);
+          const source = {uri: response?.assets[0].uri};
           setSelectedImage(source);
           navigation.navigate('UploadProfilePic');
         }

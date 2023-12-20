@@ -16,7 +16,7 @@ import {launchCamera} from 'react-native-image-picker';
 const UploadProfilePic = () => {
   const navigation = useNavigation();
   const [selectedImage, setSelectedImage] = useState(null);
-  console.log('selected image', selectedImage);
+  console.log('selected profile pic', selectedImage);
 
   const handleNext = () => {
     launchCamera(
@@ -32,7 +32,7 @@ const UploadProfilePic = () => {
         } else if (response.customButton) {
           console.log('User tapped custom button: ', response.customButton);
         } else {
-          const source = {uri: response.uri};
+          const source = {uri: response?.assets[0].uri};
           setSelectedImage(source);
           navigation.navigate('RegistrationDone');
         }
