@@ -11,8 +11,10 @@ import {COLORS, SIZES, FONTS, images, icons} from '../../../../constants';
 import HeaderA from '../../../../components/Header/HeaderA';
 import FormButton from '../../../../components/Button/FormButton';
 import ImagePicker from 'react-native-image-crop-picker';
+import {useNavigation} from '@react-navigation/native';
 
 const UploadScreen = () => {
+  const navigation = useNavigation();
   const [selectedImages, setSelectedImages] = useState([]);
 
   console.log('selected images', selectedImages);
@@ -30,8 +32,8 @@ const UploadScreen = () => {
 
       const images = await ImagePicker.openPicker(pickerOptions);
 
-      // Display selected images in the UI
-      setSelectedImages(images);
+      // Add selected images to the state
+      setSelectedImages([...selectedImages, ...images]);
     } catch (error) {
       console.error('Error picking images:', error);
       // Handle the error appropriately
@@ -42,6 +44,68 @@ const UploadScreen = () => {
     const updatedImages = [...selectedImages];
     updatedImages.splice(index, 1);
     setSelectedImages(updatedImages);
+  };
+
+  const handleNext = () => {
+    navigation.navigate('UploadScreenDetails');
+  };
+
+  const renderImageItem = ({item, index}) => {
+    if (index === selectedImages.length) {
+      // Render a placeholder image for adding more
+      return (
+        <>
+          {selectedImages.length > 0 && (
+            <TouchableOpacity
+              onPress={openPicker}
+              style={styles.uploadCtnSmall}>
+              <Image
+                source={icons.camera}
+                style={{
+                  height: SIZES.h1 * 1.2,
+                  width: SIZES.h1 * 1.42,
+                  marginBottom: SIZES.h5,
+                }}
+              />
+              <Text
+                style={{
+                  ...FONTS.body3a,
+                  color: COLORS.primary,
+                  fontFamily: 'OpenSans-Medium',
+                }}>
+                Upload photo
+              </Text>
+            </TouchableOpacity>
+          )}
+        </>
+      );
+    }
+
+    return (
+      <View key={index} style={{marginBottom: SIZES.base}}>
+        <Image
+          source={{uri: item.path}}
+          style={{
+            width: SIZES.width * 0.44,
+            height: SIZES.height * 0.24,
+            borderRadius: SIZES.base,
+          }}
+        />
+        <TouchableOpacity
+          onPress={() => removeImage(index)}
+          style={styles.closeCtn}>
+          <Image
+            source={icons.close}
+            style={{
+              height: SIZES.h5,
+              width: SIZES.h5,
+              borderRadius: 100,
+              tintColor: COLORS.white,
+            }}
+          />
+        </TouchableOpacity>
+      </View>
+    );
   };
 
   return (
@@ -93,46 +157,25 @@ const UploadScreen = () => {
             </TouchableOpacity>
           </View>
         )}
-        {/* SECOND */}
         {/* FOR  TESTINGS  */}
-        <View style={{marginTop: SIZES.base}}>
+        <View style={{marginTop: SIZES.base, marginBottom: SIZES.h1 * 1.75}}>
           <FlatList
-            data={selectedImages}
+            data={[...selectedImages, null]} // Add a null element for the placeholder
+            showsVerticalScrollIndicator={false}
             numColumns={2}
             columnWrapperStyle={{justifyContent: 'space-between'}}
-            renderItem={({item, index}) => {
-              return (
-                <View key={index} style={{marginBottom: SIZES.base}}>
-                  <Image
-                    source={{uri: item.path}}
-                    style={{
-                      width: SIZES.width * 0.44,
-                      height: SIZES.height * 0.24,
-                      borderRadius: SIZES.base,
-                    }}
-                  />
-                  <TouchableOpacity
-                    onPress={() => removeImage(index)}
-                    style={styles.closeCtn}>
-                    <Image
-                      source={icons.close}
-                      style={{
-                        height: SIZES.h5,
-                        width: SIZES.h5,
-                        borderRadius: 100,
-                        tintColor: COLORS.white,
-                      }}
-                    />
-                  </TouchableOpacity>
-                </View>
-              );
-            }}
+            renderItem={renderImageItem}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </View>
 
       {/* END BUTTON */}
-      <FormButton title="Next" btnStyle={{backgroundColor: '#BDCDD6'}} />
+      {selectedImages < 1 ? (
+        <FormButton title="Next" btnStyle={{backgroundColor: '#BDCDD6'}} />
+      ) : (
+        <FormButton title="Next" onPress={() => handleNext()} />
+      )}
     </View>
   );
 };
@@ -167,5 +210,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: SIZES.base,
     right: SIZES.base,
+  },
+  uploadCtnSmall: {
+    width: SIZES.width * 0.44,
+    height: SIZES.height * 0.24,
+    borderWidth: 1.3,
+    borderRadius: SIZES.base,
+    borderColor: COLORS.primary,
+    backgroundColor: COLORS.cream,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
