@@ -38,6 +38,12 @@ const UploadScreen = () => {
     }
   };
 
+  const removeImage = index => {
+    const updatedImages = [...selectedImages];
+    updatedImages.splice(index, 1);
+    setSelectedImages(updatedImages);
+  };
+
   return (
     <View style={styles.page}>
       <View style={{flex: 1}}>
@@ -94,9 +100,9 @@ const UploadScreen = () => {
             data={selectedImages}
             numColumns={2}
             columnWrapperStyle={{justifyContent: 'space-between'}}
-            renderItem={({item}) => {
+            renderItem={({item, index}) => {
               return (
-                <View style={{marginBottom: SIZES.base}}>
+                <View key={index} style={{marginBottom: SIZES.base}}>
                   <Image
                     source={{uri: item.path}}
                     style={{
@@ -105,7 +111,9 @@ const UploadScreen = () => {
                       borderRadius: SIZES.base,
                     }}
                   />
-                  <TouchableOpacity style={styles.closeCtn}>
+                  <TouchableOpacity
+                    onPress={() => removeImage(index)}
+                    style={styles.closeCtn}>
                     <Image
                       source={icons.close}
                       style={{
