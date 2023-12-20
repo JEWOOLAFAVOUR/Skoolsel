@@ -1,3 +1,4 @@
+export const arrowdown = require('../../assets/icons/arrowdown.png');
 export const arrowleft = require('../../assets/icons/arrowleft.png');
 export const arrowright = require('../../assets/icons/arrowright.png');
 export const avatar = require('../../assets/icons/avatar.png');
@@ -14,6 +15,7 @@ export const product = require('../../assets/icons/product.png');
 export const verticalmenu = require('../../assets/icons/verticalmenu.png');
 
 export default {
+  arrowdown,
   arrowleft,
   arrowright,
   avatar,

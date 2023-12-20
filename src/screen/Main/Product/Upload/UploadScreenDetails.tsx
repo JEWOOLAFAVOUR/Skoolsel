@@ -1,4 +1,10 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import React from 'react';
 import {COLORS, SIZES, FONTS} from '../../../../constants';
 import HeaderA from '../../../../components/Header/HeaderA';
@@ -11,12 +17,15 @@ const UploadScreenDetails = () => {
   return (
     <View style={styles.page}>
       <HeaderA title="Product details" />
-      <View>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <ProductInput placeholder="Category" />
         <ProductInput placeholder="Select Category" />
         <ProductInput placeholder="Condition" />
         <ProductInput placeholder="₦ Enter amount" />
-        <ProductInput placeholder="Product description" />
+        <ProductInput
+          placeholder="Product description"
+          btnCtn={{height: SIZES.h1 * 5}}
+        />
         {/* BUTTON */}
         <View style={{marginTop: SIZES.h2}}>
           <FormButton
@@ -34,7 +43,7 @@ const UploadScreenDetails = () => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };

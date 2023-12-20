@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import {COLORS, SIZES, FONTS} from '../../constants';
+import {COLORS, SIZES, FONTS, icons} from '../../constants';
 
-const ProductInput = ({placeholder}) => {
+const ProductInput = ({placeholder, btnCtn}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, btnCtn]}>
       <TextInput
         placeholder={placeholder}
         placeholderTextColor="#666666"
