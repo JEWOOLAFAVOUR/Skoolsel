@@ -4,7 +4,10 @@ import {COLORS, FONTS, SIZES} from '../../constants';
 
 const FormButton = ({title, onPress, btnStyle}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.container, btnStyle]}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={onPress}
+      style={[styles.container, btnStyle]}>
       <Text style={{...FONTS.body3a, color: COLORS.white}}>{title}</Text>
     </TouchableOpacity>
   );

@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES, FONTS, images} from '../../../../constants';
+import {COLORS, SIZES, FONTS, images, icons} from '../../../../constants';
 import HeaderA from '../../../../components/Header/HeaderA';
 import FormButton from '../../../../components/Button/FormButton';
 
@@ -15,6 +15,7 @@ const UploadScreen = () => {
             fontSize: SIZES.h1 * 1.2,
             color: COLORS.black,
             fontFamily: 'OpenSans-Medium',
+            marginTop: SIZES.h1,
           }}>
           Let's start
         </Text>
@@ -28,14 +29,26 @@ const UploadScreen = () => {
           }}>
           by adding photos of your product
         </Text>
-        <TouchableOpacity style={{marginTop: SIZES.h1 * 1.4}}>
+        <TouchableOpacity style={styles.uploadCtn}>
           <Image
-            source={images.upload2}
-            style={{height: SIZES.height * 0.2, width: SIZES.width * 0.9}}
+            source={icons.camera}
+            style={{
+              height: SIZES.h1 * 1.2,
+              width: SIZES.h1 * 1.42,
+              marginBottom: SIZES.h5,
+            }}
           />
+          <Text
+            style={{
+              ...FONTS.body3a,
+              color: COLORS.primary,
+              fontFamily: 'OpenSans-Medium',
+            }}>
+            Upload photo
+          </Text>
         </TouchableOpacity>
       </View>
-      <FormButton title="Next" />
+      <FormButton title="Next" btnStyle={{backgroundColor: '#BDCDD6'}} />
     </View>
   );
 };
@@ -49,5 +62,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: SIZES.width * 0.04,
     paddingTop: SIZES.h5,
     paddingBottom: SIZES.h5,
+  },
+  uploadCtn: {
+    height: SIZES.height * 0.23,
+    borderWidth: 1.3,
+    borderColor: COLORS.primary,
+    backgroundColor: COLORS.cream,
+    borderRadius: SIZES.base,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: SIZES.h1 * 1.7,
   },
 });
