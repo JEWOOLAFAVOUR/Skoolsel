@@ -10,6 +10,7 @@ import React from 'react';
 import {COLORS, SIZES, icons} from '../../../../constants';
 import HeaderA from '../../../../components/Header/HeaderA';
 import {useNavigation} from '@react-navigation/native';
+import FormButton from '../../../../components/Button/FormButton';
 
 const FilterScreen = () => {
   const navigation = useNavigation();
@@ -27,46 +28,46 @@ const FilterScreen = () => {
   ];
   return (
     <View style={styles.page}>
-      <HeaderA
-        title="Select Sub Category"
-        btnCtn={{marginLeft: SIZES.width * 0.02}}
-      />
-      <View>
-        <FlatList
-          data={filterData}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('SubFilterCategory')}
-                style={{marginBottom: SIZES.h3}}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: SIZES.h4,
-                    paddingHorizontal: SIZES.base * 0.8,
-                  }}>
-                  <Text>{item.title}</Text>
-                  <Image
-                    source={icons.arrowright2}
+      <View style={{flex: 1, marginBottom: SIZES.h1 * 1.7}}>
+        <HeaderA title="Add filter" btnCtn={{marginLeft: SIZES.width * 0.02}} />
+        <View>
+          <FlatList
+            data={filterData}
+            renderItem={({item}) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('SubFilterCategory')}
+                  style={{marginBottom: SIZES.h3}}>
+                  <View
                     style={{
-                      height: SIZES.h4 * 1.2,
-                      width: SIZES.base * 1.2,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      marginBottom: SIZES.h4,
+                      paddingHorizontal: SIZES.base * 0.8,
+                    }}>
+                    <Text>{item.title}</Text>
+                    <Image
+                      source={icons.arrowright2}
+                      style={{
+                        height: SIZES.h4 * 1.2,
+                        width: SIZES.base * 1.2,
+                      }}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      height: 1,
+                      backgroundColor: COLORS.chocolateBackground,
                     }}
                   />
-                </View>
-                <View
-                  style={{
-                    height: 1,
-                    backgroundColor: COLORS.chocolateBackground,
-                  }}
-                />
-              </TouchableOpacity>
-            );
-          }}
-        />
+                </TouchableOpacity>
+              );
+            }}
+          />
+        </View>
       </View>
+      <FormButton title="Clear filter" />
     </View>
   );
 };

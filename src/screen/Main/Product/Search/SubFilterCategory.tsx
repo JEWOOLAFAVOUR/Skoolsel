@@ -20,7 +20,10 @@ const SubFilterCategory = () => {
   ];
   return (
     <View style={styles.page}>
-      <HeaderA title="Add filter" btnCtn={{marginLeft: SIZES.width * 0.02}} />
+      <HeaderA
+        title="Select Sub Category"
+        btnCtn={{marginLeft: SIZES.width * 0.02}}
+      />
       <View>
         <FlatList
           data={filterData}
