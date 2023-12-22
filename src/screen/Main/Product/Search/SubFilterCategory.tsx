@@ -11,33 +11,23 @@ import {COLORS, SIZES, icons} from '../../../../constants';
 import HeaderA from '../../../../components/Header/HeaderA';
 import {useNavigation} from '@react-navigation/native';
 
-const FilterScreen = () => {
+const SubFilterCategory = () => {
   const navigation = useNavigation();
   const filterData = [
-    {id: 1, title: 'Phones'},
-    {id: 2, title: 'Phones Accessories'},
-    {id: 3, title: 'Laptop'},
-    {id: 4, title: 'Laptop Accessories'},
-    {id: 5, title: 'Clothes'},
-    {id: 6, title: 'Shoes'},
-    {id: 7, title: 'Beauty'},
-    {id: 8, title: 'Apartets'},
-    {id: 9, title: 'Home Accessories'},
-    {id: 10, title: 'Furnitures'},
+    {id: 1, title: 'Android phones'},
+    {id: 2, title: 'Tablets'},
+    {id: 3, title: 'Iphones'},
   ];
   return (
     <View style={styles.page}>
-      <HeaderA
-        title="Select Sub Category"
-        btnCtn={{marginLeft: SIZES.width * 0.02}}
-      />
+      <HeaderA title="Add filter" btnCtn={{marginLeft: SIZES.width * 0.02}} />
       <View>
         <FlatList
           data={filterData}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate('SubFilterCategory')}
+                onPress={() => navigation.navigate('AddFilter')}
                 style={{marginBottom: SIZES.h3}}>
                 <View
                   style={{
@@ -71,7 +61,7 @@ const FilterScreen = () => {
   );
 };
 
-export default FilterScreen;
+export default SubFilterCategory;
 
 const styles = StyleSheet.create({
   page: {

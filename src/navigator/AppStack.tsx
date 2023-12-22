@@ -9,6 +9,8 @@ import UploadScreenDetails from '../screen/Main/Product/Upload/UploadScreenDetai
 import SearchScreen from '../screen/Main/Product/Search/SearchScreen';
 import SearchResult from '../screen/Main/Product/Search/SearchResult';
 import FilterScreen from '../screen/Main/Product/Search/FilterScreen';
+import SubFilterCategory from '../screen/Main/Product/Search/SubFilterCategory';
+import AddFilter from '../screen/Main/Product/Search/AddFilter';
 
 const AppStack = () => {
   const Stack = createNativeStackNavigator();
@@ -29,6 +31,8 @@ const AppStack = () => {
         <Stack.Screen name="SearchScreen" component={SearchScreen} />
         <Stack.Screen name="SearchResult" component={SearchResult} />
         <Stack.Screen name="FilterScreen" component={FilterScreen} />
+        <Stack.Screen name="SubFilterCategory" component={SubFilterCategory} />
+        <Stack.Screen name="AddFilter" component={AddFilter} />
       </Stack.Navigator>
     </>
   );
