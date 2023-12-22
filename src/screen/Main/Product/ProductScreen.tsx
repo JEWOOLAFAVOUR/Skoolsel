@@ -110,7 +110,7 @@ const ProductScreen = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{marginTop: SIZES.h5}}>
+        <View style={{marginTop: SIZES.base}}>
           <FlatList
             // data={productData}
             data={product}

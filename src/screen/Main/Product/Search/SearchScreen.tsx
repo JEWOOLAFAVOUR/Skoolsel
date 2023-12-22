@@ -7,17 +7,34 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {COLORS, SIZES, icons, FONTS} from '../../../../constants';
 import {useNavigation} from '@react-navigation/native';
 
 const SearchScreen = () => {
   const navigation = useNavigation();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
   const realtimeSearchData = [
     {id: 1, title: 'Samsung', category: 'Phones'},
     {id: 2, title: 'Laptop', category: 'Phones and laptops'},
     {id: 3, title: 'Laptop', category: 'laptops'},
+    {id: 4, title: 'Samsung', category: 'laptops'},
+    {id: 5, title: 'Infinix', category: 'phones'},
   ];
+
+  const handleSearch = query => {
+    setSearchQuery(query);
+    if (query.length >= 3) {
+      const filteredItems = realtimeSearchData.filter(item =>
+        item.title.toLowerCase().includes(query.toLowerCase()),
+      );
+      setFilteredData(filteredItems);
+    } else {
+      setFilteredData([]);
+    }
+  };
+
   return (
     <View style={styles.page}>
       {/* SEARCH CONTAINER  */}
@@ -36,10 +53,17 @@ const SearchScreen = () => {
               marginRight: SIZES.base * 0.5,
             }}
           />
-          <TextInput
+          {/* <TextInput
             placeholder="search product"
             placeholderTextColor={COLORS.chocolate}
             style={{...FONTS.body4, color: COLORS.black, flex: 1}}
+          /> */}
+          <TextInput
+            placeholder="Search product"
+            placeholderTextColor={COLORS.chocolate}
+            style={{...FONTS.body4, color: COLORS.black, flex: 1}}
+            value={searchQuery}
+            onChangeText={handleSearch}
           />
         </View>
         <TouchableOpacity
@@ -54,19 +78,17 @@ const SearchScreen = () => {
       {/* REALTIME SEARCH */}
       <View style={{marginTop: SIZES.h3}}>
         <FlatList
-          data={realtimeSearchData}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('SearchResult')}
-                style={{marginBottom: SIZES.h5}}>
-                <Text style={{...FONTS.body4, color: COLORS.black}}>
-                  {item.title} in{' '}
-                  <Text style={{color: COLORS.primary}}>{item.category}</Text>
-                </Text>
-              </TouchableOpacity>
-            );
-          }}
+          data={filteredData}
+          renderItem={({item}) => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('SearchResult')}
+              style={{marginBottom: SIZES.h5}}>
+              <Text style={{...FONTS.body4, color: COLORS.black}}>
+                {item.title} in{' '}
+                <Text style={{color: COLORS.primary}}>{item.category}</Text>
+              </Text>
+            </TouchableOpacity>
+          )}
         />
       </View>
     </View>

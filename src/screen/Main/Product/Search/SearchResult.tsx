@@ -10,67 +10,11 @@ import {
 import React from 'react';
 import {COLORS, SIZES, icons, FONTS, images} from '../../../../constants';
 import {useNavigation} from '@react-navigation/native';
+import {searchResultData} from '../../../../components/utils/productDetailsData';
 
 const SearchResult = () => {
   const navigation = useNavigation();
-  const searchResultData = [
-    {
-      id: 1,
-      title: 'Bag',
-      description:
-        'Description about the product, Description of the product here.',
-      price: '30,000',
-    },
-    {
-      id: 2,
-      title: 'Bag',
-      description:
-        'Description about the product, Description of the product here.',
-      price: '30,000',
-    },
-    {
-      id: 3,
-      title: 'Bag',
-      description:
-        'Description about the product, Description of the product here.',
-      price: '30,000',
-    },
-    {
-      id: 4,
-      title: 'Bag',
-      description:
-        'Description about the product, Description of the product here.',
-      price: '30,000',
-    },
-    {
-      id: 5,
-      title: 'Bag',
-      description:
-        'Description about the product, Description of the product here.',
-      price: '30,000',
-    },
-    {
-      id: 6,
-      title: 'Bag',
-      description:
-        'Description about the product, Description of the product here.',
-      price: '30,000',
-    },
-    {
-      id: 7,
-      title: 'Bag',
-      description:
-        'Description about the product, Description of the product here.',
-      price: '30,000',
-    },
-    {
-      id: 8,
-      title: 'Bag',
-      description:
-        'Description about the product, Description of the product here.',
-      price: '30,000',
-    },
-  ];
+
   return (
     <View style={styles.page}>
       {/* SEARCH CONTAINER  */}
@@ -80,7 +24,9 @@ const SearchResult = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('SearchScreen')}
+          style={styles.container}>
           <Image
             source={icons.search}
             style={{
@@ -89,12 +35,10 @@ const SearchResult = () => {
               marginRight: SIZES.base * 0.5,
             }}
           />
-          <TextInput
-            placeholder="search product"
-            placeholderTextColor={COLORS.chocolate}
-            style={{...FONTS.body4, color: COLORS.black, flex: 1}}
-          />
-        </View>
+          <Text style={{...FONTS.body4, color: COLORS.black}}>
+            search product
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate('FilterScreen')}
           style={styles.filterCtn}>
@@ -116,7 +60,7 @@ const SearchResult = () => {
                   //   onPress={() => navigation.navigate('SearchResult')}
                   style={styles.searchContainer}>
                   <Image
-                    source={images.image2}
+                    source={{uri: item.productImage}}
                     style={{
                       height: SIZES.h1 * 3.7,
                       width: SIZES.h1 * 3.7,

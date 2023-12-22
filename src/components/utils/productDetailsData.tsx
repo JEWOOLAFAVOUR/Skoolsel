@@ -111,3 +111,78 @@ export const productData = [
     ],
   },
 ];
+
+export const searchResultData = [
+  {
+    id: 1,
+    title: 'Bag',
+    description:
+      'Description about the product, Description of the product here.',
+    price: '30,000',
+    productImage:
+      'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585960/image2_x3fqmf.png',
+  },
+  {
+    id: 2,
+    title: 'Bag',
+    description:
+      'Description about the product, Description of the product here.',
+    price: '30,000',
+    productImage:
+      'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585949/image1_gwseon.png',
+  },
+  {
+    id: 3,
+    title: 'Bag',
+    description:
+      'Description about the product, Description of the product here.',
+    price: '30,000',
+    productImage:
+      'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585960/image2_x3fqmf.png',
+  },
+  {
+    id: 4,
+    title: 'Bag',
+    description:
+      'Description about the product, Description of the product here.',
+    price: '30,000',
+    productImage:
+      'https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+  },
+  {
+    id: 5,
+    title: 'Bag',
+    description:
+      'Description about the product, Description of the product here.',
+    price: '30,000',
+    productImage:
+      'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585960/image2_x3fqmf.png',
+  },
+  {
+    id: 6,
+    title: 'Bag',
+    description:
+      'Description about the product, Description of the product here.',
+    price: '30,000',
+    productImage:
+      'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585960/image2_x3fqmf.png',
+  },
+  {
+    id: 7,
+    title: 'Bag',
+    description:
+      'Description about the product, Description of the product here.',
+    price: '30,000',
+    productImage:
+      'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585960/image2_x3fqmf.png',
+  },
+  {
+    id: 8,
+    title: 'Bag',
+    description:
+      'Description about the product, Description of the product here.',
+    price: '30,000',
+    productImage:
+      'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585960/image2_x3fqmf.png',
+  },
+];
