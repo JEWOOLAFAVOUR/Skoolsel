@@ -1,7 +1,9 @@
 export const arrowdown = require('../../assets/icons/arrowdown.png');
+export const arrowdown2 = require('../../assets/icons/arrowdown2.png');
 export const arrowleft = require('../../assets/icons/arrowleft.png');
 export const arrowright = require('../../assets/icons/arrowright.png');
 export const arrowright2 = require('../../assets/icons/arrowright2.png');
+export const arrowup = require('../../assets/icons/arrowup.png');
 export const avatar = require('../../assets/icons/avatar.png');
 export const badge = require('../../assets/icons/badge.png');
 export const bigadd = require('../../assets/icons/bigadd.png');
@@ -21,9 +23,11 @@ export const verticalmenu = require('../../assets/icons/verticalmenu.png');
 
 export default {
   arrowdown,
+  arrowdown2,
   arrowleft,
   arrowright,
   arrowright2,
+  arrowup,
   avatar,
   badge,
   bigadd,

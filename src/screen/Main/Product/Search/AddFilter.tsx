@@ -12,6 +12,7 @@ import HeaderA from '../../../../components/Header/HeaderA';
 
 const AddFilter = () => {
   const [check, setCheck] = useState(false);
+  const [checkBox, setCheckBox] = useState(true);
 
   const typeData = [{id: 1}, {id: 2}];
   return (
@@ -33,46 +34,48 @@ const AddFilter = () => {
                   <Text style={{...FONTS.body4, color: COLORS.black}}>
                     Condition
                   </Text>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => setCheckBox(!checkBox)}>
                     <Image
-                      source={icons.arrowdown}
-                      style={{height: SIZES.base * 1.2, width: SIZES.h3}}
+                      source={checkBox ? icons.arrowdown2 : icons.arrowup}
+                      style={{height: SIZES.h2, width: SIZES.h2}}
                     />
                   </TouchableOpacity>
                 </View>
                 {/* CHECKBOX */}
-                <View style={{marginTop: SIZES.h5}}>
-                  {typeData.map((data, index) => {
-                    return (
-                      <View
-                        key={index}
-                        style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          marginBottom: SIZES.h3,
-                        }}>
-                        <TouchableOpacity onPress={() => setCheck(!check)}>
-                          <Image
-                            source={check ? icons.checkbox2 : icons.checkbox1}
-                            style={{
-                              height: SIZES.h2,
-                              width: SIZES.h2,
-                              tintColor: check && COLORS.primary,
-                            }}
-                          />
-                        </TouchableOpacity>
-                        <Text
+                {checkBox === false && (
+                  <View style={{marginTop: SIZES.h5}}>
+                    {typeData.map((data, index) => {
+                      return (
+                        <View
+                          key={index}
                           style={{
-                            ...FONTS.body3c,
-                            color: COLORS.black,
-                            marginLeft: SIZES.base,
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginBottom: SIZES.h3,
                           }}>
-                          New
-                        </Text>
-                      </View>
-                    );
-                  })}
-                </View>
+                          <TouchableOpacity onPress={() => setCheck(!check)}>
+                            <Image
+                              source={check ? icons.checkbox2 : icons.checkbox1}
+                              style={{
+                                height: SIZES.h2,
+                                width: SIZES.h2,
+                                tintColor: check && COLORS.primary,
+                              }}
+                            />
+                          </TouchableOpacity>
+                          <Text
+                            style={{
+                              ...FONTS.body3c,
+                              color: COLORS.black,
+                              marginLeft: SIZES.base,
+                            }}>
+                            New
+                          </Text>
+                        </View>
+                      );
+                    })}
+                  </View>
+                )}
               </View>
             );
           }}
