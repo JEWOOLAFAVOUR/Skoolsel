@@ -15,6 +15,8 @@ const SearchScreen = () => {
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+
   const realtimeSearchData = [
     {id: 1, title: 'Samsung', category: 'Phones'},
     {id: 2, title: 'Laptop', category: 'Phones and laptops'},
@@ -25,6 +27,7 @@ const SearchScreen = () => {
 
   const handleSearch = query => {
     setSearchQuery(query);
+    setIsSearching(query.length >= 3);
     if (query.length >= 3) {
       const filteredItems = realtimeSearchData.filter(item =>
         item.title.toLowerCase().includes(query.toLowerCase()),
@@ -77,19 +80,25 @@ const SearchScreen = () => {
       </View>
       {/* REALTIME SEARCH */}
       <View style={{marginTop: SIZES.h3}}>
-        <FlatList
-          data={filteredData}
-          renderItem={({item}) => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate('SearchResult')}
-              style={{marginBottom: SIZES.h5}}>
-              <Text style={{...FONTS.body4, color: COLORS.black}}>
-                {item.title} in{' '}
-                <Text style={{color: COLORS.primary}}>{item.category}</Text>
-              </Text>
-            </TouchableOpacity>
-          )}
-        />
+        {isSearching && filteredData.length === 0 ? (
+          <Text style={{...FONTS.body4, color: COLORS.black}}>
+            No Search Result
+          </Text>
+        ) : (
+          <FlatList
+            data={filteredData}
+            renderItem={({item}) => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('SearchResult')}
+                style={{marginBottom: SIZES.h5}}>
+                <Text style={{...FONTS.body4, color: COLORS.black}}>
+                  {item.title} in{' '}
+                  <Text style={{color: COLORS.primary}}>{item.category}</Text>
+                </Text>
+              </TouchableOpacity>
+            )}
+          />
+        )}
       </View>
     </View>
   );
