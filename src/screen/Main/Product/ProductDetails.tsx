@@ -10,10 +10,11 @@ import React, {useState} from 'react';
 import HeaderA from '../../../components/Header/HeaderA';
 import ImageSliderComponent from '../../../components/utils/ImageSliderComponent';
 import {images, icons, FONTS, COLORS, SIZES} from '../../../constants';
+import {singleData} from '../../../components/utils/productDetailsData';
 
 const ProductDetails = ({route}) => {
   const [toogle, setToogle] = useState(false);
-  const productData = route?.params?.data;
+  const productData = route?.params?.data || singleData;
   return (
     <View style={styles.page}>
       {/* FOR HEADER CAN BE REUSABLE */}

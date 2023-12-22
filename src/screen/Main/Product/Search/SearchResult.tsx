@@ -56,9 +56,7 @@ const SearchResult = () => {
           renderItem={({item}) => {
             return (
               <View style={{marginBottom: SIZES.h4}}>
-                <TouchableOpacity
-                  //   onPress={() => navigation.navigate('SearchResult')}
-                  style={styles.searchContainer}>
+                <TouchableOpacity style={styles.searchContainer}>
                   <Image
                     source={{uri: item.productImage}}
                     style={{
@@ -95,7 +93,8 @@ const SearchResult = () => {
                         }}>
                         ₦{item.price}
                       </Text>
-                      <TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate('ProductDetails')}>
                         <Text style={{...FONTS.body5, color: COLORS.primary}}>
                           View details
                         </Text>
