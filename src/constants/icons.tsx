@@ -9,6 +9,7 @@ export const camera = require('../../assets/icons/camera.png');
 export const check = require('../../assets/icons/check.png');
 export const close = require('../../assets/icons/close.png');
 export const empty = require('../../assets/icons/empty.png');
+export const filter = require('../../assets/icons/filter.png');
 export const lock = require('../../assets/icons/lock.png');
 export const mark = require('../../assets/icons/mark.png');
 export const product = require('../../assets/icons/product.png');
@@ -26,6 +27,7 @@ export default {
   check,
   close,
   empty,
+  filter,
   lock,
   mark,
   product,

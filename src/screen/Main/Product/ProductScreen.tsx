@@ -82,8 +82,10 @@ const ProductScreen = () => {
             return (
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate('ProductDetails', {data: item})
+                  // navigation.navigate('ProductDetails', {data: item})
+                  navigation.navigate('SearchScreen', {data: item})
                 }
+                SearchScreen
                 style={{marginBottom: SIZES.h2}}>
                 <View style={{paddingHorizontal: SIZES.width * 0.03}}>
                   <View
