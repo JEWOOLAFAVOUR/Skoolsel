@@ -4,7 +4,7 @@ import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import icons from '../../constants/icons';
 import {useNavigation} from '@react-navigation/native';
 
-const HeaderA = ({title, vertical, btnCtn}) => {
+const HeaderA = ({title, vertical, btnCtn, topCtn, topText}) => {
   const navigation = useNavigation();
   return (
     <View style={[styles.container, btnCtn]}>
@@ -26,6 +26,16 @@ const HeaderA = ({title, vertical, btnCtn}) => {
           {title}
         </Text>
       </View>
+      {topCtn && (
+        <Text
+          style={{
+            ...FONTS.body4,
+            color: COLORS.primary,
+            textDecorationLine: 'underline',
+          }}>
+          {topText}
+        </Text>
+      )}
       {vertical && (
         <TouchableOpacity>
           <Image
