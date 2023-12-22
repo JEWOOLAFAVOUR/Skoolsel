@@ -8,6 +8,8 @@ export const bigadd = require('../../assets/icons/bigadd.png');
 export const bookmark = require('../../assets/icons/bookmark.png');
 export const camera = require('../../assets/icons/camera.png');
 export const check = require('../../assets/icons/check.png');
+export const checkbox1 = require('../../assets/icons/checkbox1.png');
+export const checkbox2 = require('../../assets/icons/checkbox2.png');
 export const close = require('../../assets/icons/close.png');
 export const empty = require('../../assets/icons/empty.png');
 export const filter = require('../../assets/icons/filter.png');
@@ -28,6 +30,8 @@ export default {
   bookmark,
   camera,
   check,
+  checkbox1,
+  checkbox2,
   close,
   empty,
   filter,
