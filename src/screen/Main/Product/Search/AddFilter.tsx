@@ -45,6 +45,7 @@ const AddFilter = () => {
       optionData: [
         {id: 1, title: 'Iphone XR'},
         {id: 2, title: 'Iphone 15 pro max'},
+        {id: 3, title: 'Iphone 14pro max'},
       ],
     },
   ];
