@@ -17,6 +17,8 @@ import {useNavigation} from '@react-navigation/native';
 const AddFilter = () => {
   const navigation = useNavigation();
   const [check, setCheck] = useState(false);
+  // const [selectedOptionId, setSelectedOptionId] = useState(null);
+  const [selectedOptionIds, setSelectedOptionIds] = useState([]);
   const [checkBox, setCheckBox] = useState(true);
 
   const filterData = {
@@ -83,6 +85,7 @@ const AddFilter = () => {
                   {checkBox === false && (
                     <View style={{marginTop: SIZES.base}}>
                       {item.optionData.map((data, index) => {
+                        const isSelected = selectedOptionIds.includes(data?.id);
                         return (
                           <View
                             key={index}
@@ -91,10 +94,24 @@ const AddFilter = () => {
                               alignItems: 'center',
                               marginBottom: SIZES.h3,
                             }}>
-                            <TouchableOpacity onPress={() => setCheck(!check)}>
+                            <TouchableOpacity
+                              onPress={() => {
+                                if (isSelected) {
+                                  // If already selected, remove from the array
+                                  setSelectedOptionIds(prevIds =>
+                                    prevIds.filter(id => id !== data.id),
+                                  );
+                                } else {
+                                  // If not selected, add to the array
+                                  setSelectedOptionIds(prevIds => [
+                                    ...prevIds,
+                                    data.id,
+                                  ]);
+                                }
+                              }}>
                               <Image
                                 source={
-                                  check ? icons.checkbox2 : icons.checkbox1
+                                  isSelected ? icons.checkbox2 : icons.checkbox1
                                 }
                                 style={{
                                   height: SIZES.h2,
