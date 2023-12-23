@@ -23,6 +23,7 @@ const SearchScreen = () => {
     {id: 3, title: 'Laptop', category: 'laptops'},
     {id: 4, title: 'Samsung', category: 'laptops'},
     {id: 5, title: 'Infinix', category: 'phones'},
+    {id: 6, title: 'Infinix', category: 'phones'},
   ];
 
   const handleSearch = query => {
