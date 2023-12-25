@@ -18,12 +18,14 @@ import {
   addSearchFilter,
   removeSearchFilter,
   updateFilterDetails,
+  updateRadioSelection,
 } from '../../../../redux/actions/midAction';
 
 const AddFilter = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const searchQuery = useSelector(state => state.mid?.searchFilter);
+  const radioSelection = useSelector(state => state.mid?.radioSelection);
   const [check, setCheck] = useState(false);
   // const [selectedOptionId, setSelectedOptionId] = useState(null);
   const [selectedOptionIds, setSelectedOptionIds] = useState([]);
@@ -51,9 +53,9 @@ const AddFilter = () => {
       id: 2,
       title: 'Type',
       optionData: [
-        {id: 1, title: 'Iphone XR'},
-        {id: 2, title: 'Iphone 15 pro max'},
-        {id: 3, title: 'Iphone 14pro max'},
+        {id: 3, title: 'Iphone XR'},
+        {id: 4, title: 'Iphone 15 pro max'},
+        {id: 5, title: 'Iphone 14pro max'},
       ],
     },
     {
@@ -61,9 +63,9 @@ const AddFilter = () => {
       type: 'checkbox',
       title: 'Color',
       optionData: [
-        {id: 1, title: 'Iphone XR'},
-        {id: 2, title: 'Iphone 15 pro max'},
-        {id: 3, title: 'Iphone 14pro max'},
+        {id: 6, title: 'Iphone XR'},
+        {id: 7, title: 'Iphone 15 pro max'},
+        {id: 8, title: 'Iphone 14pro max'},
       ],
     },
   ];
@@ -78,16 +80,51 @@ const AddFilter = () => {
     typeData.map(() => null),
   );
 
-  const handleMultiSelect = selectedOption => {
-    const isSelected = searchQuery.some(
-      filter => filter.id === selectedOption.id,
-    );
+  // const handleMultiSelect = (item, data) => {
+  //   const isSelected = selectedOptionStates.some(id => id === data.id);
+
+  //   if (isSelected) {
+  //     // Deselect
+  //     setSelectedOptionStates(prevIds => prevIds.filter(id => id !== data.id));
+  //     dispatch(removeSearchFilter({id: item.id, title: item.title}));
+  //   } else {
+  //     // Select
+  //     setSelectedOptionStates(prevIds => [...prevIds, data.id]);
+  //     dispatch(addSearchFilter({id: item.id, title: item.title}));
+  //   }
+  // };
+
+  const handleMultiSelect = (item, data) => {
+    const isSelected = selectedOptionStates[item.id]?.includes(data.id);
 
     if (isSelected) {
-      dispatch(removeSearchFilter(selectedOption));
+      // Deselect
+      setSelectedOptionStates(prevStates => {
+        const newStates = {...prevStates};
+        newStates[item.id] = newStates[item.id].filter(id => id !== data.id);
+        return newStates;
+      });
+      dispatch(removeSearchFilter({id: data.id, title: data.title}));
     } else {
-      dispatch(addSearchFilter(selectedOption));
+      // Select
+      setSelectedOptionStates(prevStates => {
+        const newStates = {...prevStates};
+        newStates[item.id] = newStates[item.id]
+          ? [...newStates[item.id], data.id]
+          : [data.id];
+        return newStates;
+      });
+      dispatch(addSearchFilter({id: data.id, title: data.title}));
     }
+  };
+
+  const handleRadioSelect = (item, data) => {
+    const selectedId = radioSelection[item.id] === data.id ? null : data.id;
+    setSelectedRadioStates(prevStates => ({
+      ...prevStates,
+      [item.id]: selectedId,
+    }));
+    dispatch(updateRadioSelection(item, selectedId));
   };
 
   useEffect(() => {
@@ -164,23 +201,26 @@ const AddFilter = () => {
                                 }}>
                                 <TouchableOpacity
                                   onPress={() => {
-                                    setSelectedOptionStates(prevStates => {
-                                      const newStates = [...prevStates];
-                                      newStates[index] = isSelected
-                                        ? newStates[index].filter(
-                                            id => id !== data.id,
-                                          )
-                                        : [...newStates[index], data.id];
-                                      return newStates;
-                                    });
-                                    handleMultiSelect({
-                                      id: item.id,
-                                      title: item.title,
-                                    });
+                                    // setSelectedOptionStates(prevStates => {
+                                    //   const newStates = [...prevStates];
+                                    //   newStates[index] = isSelected
+                                    //     ? newStates[index].filter(
+                                    //         id => id !== data.id,
+                                    //       )
+                                    //     : [...newStates[index], data.id];
+                                    //   return newStates;
+                                    // });
+                                    // console.log({
+                                    //   id: item.id,
+                                    //   title: item.title,
+                                    // });
+                                    handleMultiSelect(item, data);
                                   }}>
                                   <Image
                                     source={
-                                      isSelected
+                                      selectedOptionStates[item.id]?.includes(
+                                        data.id,
+                                      )
                                         ? icons.checkbox2
                                         : icons.checkbox1
                                     }
@@ -219,23 +259,22 @@ const AddFilter = () => {
                                 <TouchableOpacity
                                   style={styles.radioBtnCtn}
                                   onPress={() => {
-                                    setSelectedRadioStates(prevStates => {
-                                      const newStates = [...prevStates];
-                                      newStates[index] = data.id;
-                                      return newStates;
-                                    });
-                                    // handleRadioSelect({
-                                    //   id: data.id,
-                                    //   title: data.title,
+                                    // setSelectedRadioStates(prevStates => {
+                                    //   const newStates = [...prevStates];
+                                    //   newStates[index] = data.id;
+                                    //   return newStates;
                                     // });
+
+                                    handleRadioSelect(item, data);
                                   }}>
                                   <View
                                     style={{
                                       height: SIZES.h4 * 0.9,
                                       width: SIZES.h4 * 0.9,
-                                      backgroundColor: isSelected
-                                        ? COLORS.black
-                                        : COLORS.white,
+                                      backgroundColor:
+                                        radioSelection[item.id] === data.id
+                                          ? COLORS.black
+                                          : COLORS.white,
                                       borderRadius: 100,
                                     }}
                                   />

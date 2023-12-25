@@ -3,11 +3,13 @@ import {
   UPDATE_SEARCH_FILTER,
   ADD_SEARCH_FILTER,
   REMOVE_SEARCH_FILTER,
+  UPDATE_RADIO_SELECTION,
 } from '../constants/constants';
 
 const initialState = {
   userAuth: {},
   searchFilter: [],
+  radioSelection: {},
 };
 
 const midReducer = (state = initialState, action) => {
@@ -43,6 +45,14 @@ const midReducer = (state = initialState, action) => {
         searchFilter: state.searchFilter.filter(
           filter => filter.id !== action.filter.id,
         ),
+      };
+    case UPDATE_RADIO_SELECTION:
+      return {
+        ...state,
+        radioSelection: {
+          ...state.radioSelection,
+          [action.item.id]: action.selectedId,
+        },
       };
     default:
       return state;
