@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {COLORS, SIZES, icons, FONTS} from '../../../../constants';
 import HeaderA from '../../../../components/Header/HeaderA';
 import RangeSlider from 'react-native-range-slider';
@@ -14,6 +14,11 @@ import SliderScreen from '../../../../components/slider/src/screens/Slider';
 import FormButton from '../../../../components/Button/FormButton';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
+import {
+  addSearchFilter,
+  removeSearchFilter,
+  updateFilterDetails,
+} from '../../../../redux/actions/midAction';
 
 const AddFilter = () => {
   const navigation = useNavigation();
@@ -73,10 +78,33 @@ const AddFilter = () => {
     typeData.map(() => null),
   );
 
+  const handleMultiSelect = selectedOption => {
+    const isSelected = searchQuery.some(
+      filter => filter.id === selectedOption.id,
+    );
+
+    if (isSelected) {
+      dispatch(removeSearchFilter(selectedOption));
+    } else {
+      dispatch(addSearchFilter(selectedOption));
+    }
+  };
+
+  useEffect(() => {
+    // Use the length of the searchQuery to determine the number of selected filters
+    const numberOfFilters = searchQuery.length;
+    // Do something with the number of filters, e.g., update the header text
+    // You may want to dispatch this information to Redux as well if needed
+  }, [searchQuery]);
+
   return (
     <View style={styles.page}>
       <View style={{flex: 1}}>
-        <HeaderA title="Add filter" topCtn={true} topText="4 Filters applied" />
+        <HeaderA
+          title="Add filter"
+          topCtn={true}
+          topText={`${searchQuery.length} Filters applied`}
+        />
         <View style={{}}>
           <FlatList
             data={typeData}
@@ -145,6 +173,10 @@ const AddFilter = () => {
                                         : [...newStates[index], data.id];
                                       return newStates;
                                     });
+                                    handleMultiSelect({
+                                      id: item.id,
+                                      title: item.title,
+                                    });
                                   }}>
                                   <Image
                                     source={
@@ -192,6 +224,10 @@ const AddFilter = () => {
                                       newStates[index] = data.id;
                                       return newStates;
                                     });
+                                    // handleRadioSelect({
+                                    //   id: data.id,
+                                    //   title: data.title,
+                                    // });
                                   }}>
                                   <View
                                     style={{
