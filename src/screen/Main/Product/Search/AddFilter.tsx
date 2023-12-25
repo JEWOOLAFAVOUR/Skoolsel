@@ -48,6 +48,16 @@ const AddFilter = () => {
         {id: 3, title: 'Iphone 14pro max'},
       ],
     },
+    {
+      id: 3,
+      type: 'checkbox',
+      title: 'Color',
+      optionData: [
+        {id: 1, title: 'Iphone XR'},
+        {id: 2, title: 'Iphone 15 pro max'},
+        {id: 3, title: 'Iphone 14pro max'},
+      ],
+    },
   ];
 
   const [checkBoxStates, setCheckBoxStates] = useState(
@@ -55,6 +65,9 @@ const AddFilter = () => {
   );
   const [selectedOptionStates, setSelectedOptionStates] = useState(
     typeData.map(() => []),
+  );
+  const [selectedRadioStates, setSelectedRadioStates] = useState(
+    typeData.map(() => null),
   );
 
   return (
@@ -103,53 +116,104 @@ const AddFilter = () => {
                   </View>
                   {/* CHECKBOX */}
                   {checkBoxStates[index] === false && (
-                    <View style={{marginTop: SIZES.base}}>
-                      {item.optionData.map((data, dataIndex) => {
-                        const isSelected = selectedOptionStates[index].includes(
-                          data?.id,
-                        );
-                        return (
-                          <View
-                            key={dataIndex}
-                            style={{
-                              flexDirection: 'row',
-                              alignItems: 'center',
-                              marginBottom: SIZES.h3,
-                            }}>
-                            <TouchableOpacity
-                              onPress={() => {
-                                setSelectedOptionStates(prevStates => {
-                                  const newStates = [...prevStates];
-                                  newStates[index] = isSelected
-                                    ? newStates[index].filter(
-                                        id => id !== data.id,
-                                      )
-                                    : [...newStates[index], data.id];
-                                  return newStates;
-                                });
-                              }}>
-                              <Image
-                                source={
-                                  isSelected ? icons.checkbox2 : icons.checkbox1
-                                }
+                    <View>
+                      {item.type !== 'checkbox' ? (
+                        <View style={{marginTop: SIZES.base}}>
+                          {item.optionData.map((data, dataIndex) => {
+                            const isSelected = selectedOptionStates[
+                              index
+                            ].includes(data?.id);
+                            return (
+                              <View
+                                key={dataIndex}
                                 style={{
-                                  height: SIZES.h2,
-                                  width: SIZES.h2,
-                                  tintColor: check && COLORS.primary,
-                                }}
-                              />
-                            </TouchableOpacity>
-                            <Text
-                              style={{
-                                ...FONTS.body3c,
-                                color: COLORS.black,
-                                marginLeft: SIZES.base,
-                              }}>
-                              {data.title}
-                            </Text>
-                          </View>
-                        );
-                      })}
+                                  flexDirection: 'row',
+                                  alignItems: 'center',
+                                  marginBottom: SIZES.h3,
+                                }}>
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    setSelectedOptionStates(prevStates => {
+                                      const newStates = [...prevStates];
+                                      newStates[index] = isSelected
+                                        ? newStates[index].filter(
+                                            id => id !== data.id,
+                                          )
+                                        : [...newStates[index], data.id];
+                                      return newStates;
+                                    });
+                                  }}>
+                                  <Image
+                                    source={
+                                      isSelected
+                                        ? icons.checkbox2
+                                        : icons.checkbox1
+                                    }
+                                    style={{
+                                      height: SIZES.h2,
+                                      width: SIZES.h2,
+                                      tintColor: check && COLORS.primary,
+                                    }}
+                                  />
+                                </TouchableOpacity>
+                                <Text
+                                  style={{
+                                    ...FONTS.body3c,
+                                    color: COLORS.black,
+                                    marginLeft: SIZES.base,
+                                  }}>
+                                  {data.title}
+                                </Text>
+                              </View>
+                            );
+                          })}
+                        </View>
+                      ) : (
+                        <View style={{marginTop: SIZES.base}}>
+                          {item.optionData.map((data, dataIndex) => {
+                            const isSelected =
+                              selectedRadioStates[index] === data?.id;
+                            return (
+                              <View
+                                key={dataIndex}
+                                style={{
+                                  flexDirection: 'row',
+                                  alignItems: 'center',
+                                  marginBottom: SIZES.h5,
+                                }}>
+                                <TouchableOpacity
+                                  style={styles.radioBtnCtn}
+                                  onPress={() => {
+                                    setSelectedRadioStates(prevStates => {
+                                      const newStates = [...prevStates];
+                                      newStates[index] = data.id;
+                                      return newStates;
+                                    });
+                                  }}>
+                                  <View
+                                    style={{
+                                      height: SIZES.h4 * 0.9,
+                                      width: SIZES.h4 * 0.9,
+                                      backgroundColor: isSelected
+                                        ? COLORS.black
+                                        : COLORS.white,
+                                      borderRadius: 100,
+                                    }}
+                                  />
+                                </TouchableOpacity>
+                                <Text
+                                  style={{
+                                    ...FONTS.body3c,
+                                    color: COLORS.black,
+                                    marginLeft: SIZES.base,
+                                  }}>
+                                  {data.title}
+                                </Text>
+                              </View>
+                            );
+                          })}
+                        </View>
+                      )}
                     </View>
                   )}
                 </View>
@@ -193,5 +257,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: SIZES.width * 0.05,
     paddingTop: SIZES.h4,
     paddingBottom: SIZES.h4,
+  },
+  radioBtnCtn: {
+    height: SIZES.h2 * 1.1,
+    width: SIZES.h2 * 1.1,
+    borderRadius: 100,
+    borderWidth: 1.7,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
