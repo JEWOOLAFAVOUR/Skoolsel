@@ -13,7 +13,7 @@ const initialState = {
 };
 
 const midReducer = (state = initialState, action) => {
-  const {type, userAuth, searchFilter} = action;
+  const {type, userAuth, searchFilter, filter} = action;
 
   switch (type) {
     case UPDATE_USER_AUTH_DETAILS:
@@ -35,16 +35,18 @@ const midReducer = (state = initialState, action) => {
         searchFilter: searchFilter,
       };
     case ADD_SEARCH_FILTER:
-      return {
-        ...state,
-        searchFilter: [...state.searchFilter, action.filter],
-      };
+      if (!state.searchFilter.some(f => f.id === filter.id)) {
+        return {
+          ...state,
+          searchFilter: [...state.searchFilter, filter],
+        };
+      }
+      return state;
+
     case REMOVE_SEARCH_FILTER:
       return {
         ...state,
-        searchFilter: state.searchFilter.filter(
-          filter => filter.id !== action.filter.id,
-        ),
+        searchFilter: state.searchFilter.filter(f => f.id !== filter.id),
       };
     case UPDATE_RADIO_SELECTION:
       return {

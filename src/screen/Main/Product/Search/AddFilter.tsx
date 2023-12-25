@@ -76,9 +76,8 @@ const AddFilter = () => {
   const [selectedOptionStates, setSelectedOptionStates] = useState(
     typeData.map(() => []),
   );
-  const [selectedRadioStates, setSelectedRadioStates] = useState(
-    typeData.map(() => null),
-  );
+
+  const [selectedRadioStates, setSelectedRadioStates] = useState({});
 
   // const handleMultiSelect = (item, data) => {
   //   const isSelected = selectedOptionStates.some(id => id === data.id);
@@ -120,19 +119,37 @@ const AddFilter = () => {
 
   const handleRadioSelect = (item, data) => {
     const selectedId = radioSelection[item.id] === data.id ? null : data.id;
+
+    // Update the radio selection in the local state
     setSelectedRadioStates(prevStates => ({
       ...prevStates,
       [item.id]: selectedId,
     }));
+
+    // Dispatch the updateRadioSelection action
     dispatch(updateRadioSelection(item, selectedId));
   };
 
   useEffect(() => {
-    // Use the length of the searchQuery to determine the number of selected filters
-    const numberOfFilters = searchQuery.length;
-    // Do something with the number of filters, e.g., update the header text
+    // Calculate the total number of applied filters
+    let totalFilters = 0;
+
+    // Count the selected options for each category (checkbox groups)
+    Object.keys(selectedOptionStates).forEach(itemId => {
+      totalFilters += selectedOptionStates[itemId].length;
+    });
+
+    // Count the selected options for radio button groups
+    Object.keys(selectedRadioStates).forEach(itemId => {
+      if (selectedRadioStates[itemId] !== null) {
+        totalFilters += 1;
+      }
+    });
+
+    // Do something with the total, e.g., update the header text
     // You may want to dispatch this information to Redux as well if needed
-  }, [searchQuery]);
+    console.log('Total Filters:', totalFilters);
+  }, [selectedOptionStates, selectedRadioStates]);
 
   return (
     <View style={styles.page}>

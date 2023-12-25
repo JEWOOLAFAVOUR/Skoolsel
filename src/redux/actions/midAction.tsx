@@ -34,6 +34,7 @@ export const removeSearchFilter = filter => {
   };
 };
 
+// Update the action to handle radio selections and dispatch the corresponding searchFilter updates
 export const updateRadioSelection = (item, selectedId) => {
   return (dispatch, getState) => {
     dispatch({
@@ -54,8 +55,12 @@ export const updateRadioSelection = (item, selectedId) => {
 
     // If a radio option is selected, add it to the searchFilter array; otherwise, remove it
     if (selectedId) {
-      dispatch(addSearchFilter(radioFilter));
+      // Check if the radio selection is not already in the searchFilter array
+      if (!searchFilter.some(filter => filter.id === selectedId)) {
+        dispatch(addSearchFilter(radioFilter));
+      }
     } else {
+      // Remove the radio selection from the searchFilter array
       dispatch(removeSearchFilter(radioFilter));
     }
   };
