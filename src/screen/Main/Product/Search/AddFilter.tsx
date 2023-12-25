@@ -13,9 +13,12 @@ import RangeSlider from 'react-native-range-slider';
 import SliderScreen from '../../../../components/slider/src/screens/Slider';
 import FormButton from '../../../../components/Button/FormButton';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
 
 const AddFilter = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const searchQuery = useSelector(state => state.mid?.searchFilter);
   const [check, setCheck] = useState(false);
   // const [selectedOptionId, setSelectedOptionId] = useState(null);
   const [selectedOptionIds, setSelectedOptionIds] = useState([]);

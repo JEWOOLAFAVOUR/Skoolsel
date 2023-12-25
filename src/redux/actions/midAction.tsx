@@ -1,6 +1,6 @@
 import {
   UPDATE_USER_AUTH_DETAILS,
-  UPDATE_FILTER_DETAIL,
+  UPDATE_SEARCH_FILTER,
 } from '../constants/constants';
 
 export const updateUserAuthDetails = userAuth => {
@@ -10,9 +10,9 @@ export const updateUserAuthDetails = userAuth => {
   };
 };
 
-export const updateFilterDetails = userAuth => {
+export const updateFilterDetails = searchFilter => {
   return {
-    type: UPDATE_FILTER_DETAIL,
+    type: UPDATE_SEARCH_FILTER,
     userAuth,
   };
 };

@@ -1,27 +1,33 @@
-import { UPDATE_USER_AUTH_DETAILS } from "../constants/constants";
-
+import {
+  UPDATE_USER_AUTH_DETAILS,
+  UPDATE_SEARCH_FILTER,
+} from '../constants/constants';
 
 const initialState = {
-    userAuth: {},
-}
-
-
+  userAuth: {},
+  searchFilter: [],
+};
 
 const midReducer = (state = initialState, action) => {
-    const { type, userAuth } = action;
+  const {type, userAuth, searchFilter} = action;
 
-    switch (type) {
-        case UPDATE_USER_AUTH_DETAILS:
-            return {
-                ...state,
-                userAuth: {
-                    ...state.userAuth,
-                    ...userAuth,
-                }
-            };
-        default:
-            return state;
-    }
+  switch (type) {
+    case UPDATE_USER_AUTH_DETAILS:
+      return {
+        ...state,
+        userAuth: {
+          ...state.userAuth,
+          ...userAuth,
+        },
+      };
+    case UPDATE_SEARCH_FILTER:
+      return {
+        ...state,
+        searchFilter: [],
+      };
+    default:
+      return state;
+  }
 };
 
 export default midReducer;
