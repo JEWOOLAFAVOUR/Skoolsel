@@ -48,14 +48,7 @@ const midReducer = (state = initialState, action) => {
         ...state,
         searchFilter: state.searchFilter.filter(f => f.id !== filter.id),
       };
-    case UPDATE_RADIO_SELECTION:
-      return {
-        ...state,
-        radioSelection: {
-          ...state.radioSelection,
-          [action.item.id]: action.selectedId,
-        },
-      };
+
     default:
       return state;
   }

@@ -9,7 +9,6 @@ import {
 import React, {useState, useEffect} from 'react';
 import {COLORS, SIZES, icons, FONTS} from '../../../../constants';
 import HeaderA from '../../../../components/Header/HeaderA';
-import RangeSlider from 'react-native-range-slider';
 import SliderScreen from '../../../../components/slider/src/screens/Slider';
 import FormButton from '../../../../components/Button/FormButton';
 import {useNavigation} from '@react-navigation/native';
@@ -17,19 +16,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
   addSearchFilter,
   removeSearchFilter,
-  updateFilterDetails,
-  updateRadioSelection,
 } from '../../../../redux/actions/midAction';
 
 const AddFilter = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const searchQuery = useSelector(state => state.mid?.searchFilter);
-  const radioSelection = useSelector(state => state.mid?.radioSelection);
-  const [check, setCheck] = useState(false);
-  // const [selectedOptionId, setSelectedOptionId] = useState(null);
-  const [selectedOptionIds, setSelectedOptionIds] = useState([]);
-  const [checkBox, setCheckBox] = useState(true);
 
   const filterData = {
     low: 20000,
@@ -77,22 +69,6 @@ const AddFilter = () => {
     typeData.map(() => []),
   );
 
-  const [selectedRadioStates, setSelectedRadioStates] = useState({});
-
-  // const handleMultiSelect = (item, data) => {
-  //   const isSelected = selectedOptionStates.some(id => id === data.id);
-
-  //   if (isSelected) {
-  //     // Deselect
-  //     setSelectedOptionStates(prevIds => prevIds.filter(id => id !== data.id));
-  //     dispatch(removeSearchFilter({id: item.id, title: item.title}));
-  //   } else {
-  //     // Select
-  //     setSelectedOptionStates(prevIds => [...prevIds, data.id]);
-  //     dispatch(addSearchFilter({id: item.id, title: item.title}));
-  //   }
-  // };
-
   const handleMultiSelect = (item, data) => {
     const isSelected = selectedOptionStates[item.id]?.includes(data.id);
 
@@ -117,39 +93,20 @@ const AddFilter = () => {
     }
   };
 
-  const handleRadioSelect = (item, data) => {
-    const selectedId = radioSelection[item.id] === data.id ? null : data.id;
-
-    // Update the radio selection in the local state
-    setSelectedRadioStates(prevStates => ({
-      ...prevStates,
-      [item.id]: selectedId,
-    }));
-
-    // Dispatch the updateRadioSelection action
-    dispatch(updateRadioSelection(item, selectedId));
-  };
-
   useEffect(() => {
-    // Calculate the total number of applied filters
     let totalFilters = 0;
-
-    // Count the selected options for each category (checkbox groups)
     Object.keys(selectedOptionStates).forEach(itemId => {
       totalFilters += selectedOptionStates[itemId].length;
     });
 
-    // Count the selected options for radio button groups
-    Object.keys(selectedRadioStates).forEach(itemId => {
-      if (selectedRadioStates[itemId] !== null) {
-        totalFilters += 1;
-      }
-    });
-
-    // Do something with the total, e.g., update the header text
-    // You may want to dispatch this information to Redux as well if needed
     console.log('Total Filters:', totalFilters);
-  }, [selectedOptionStates, selectedRadioStates]);
+  }, [selectedOptionStates]);
+
+  const [focusedRadio, setFocusedRadio] = useState(null);
+
+  const handleRadioPress = radioId => {
+    setFocusedRadio(radioId);
+  };
 
   return (
     <View style={styles.page}>
@@ -218,19 +175,6 @@ const AddFilter = () => {
                                 }}>
                                 <TouchableOpacity
                                   onPress={() => {
-                                    // setSelectedOptionStates(prevStates => {
-                                    //   const newStates = [...prevStates];
-                                    //   newStates[index] = isSelected
-                                    //     ? newStates[index].filter(
-                                    //         id => id !== data.id,
-                                    //       )
-                                    //     : [...newStates[index], data.id];
-                                    //   return newStates;
-                                    // });
-                                    // console.log({
-                                    //   id: item.id,
-                                    //   title: item.title,
-                                    // });
                                     handleMultiSelect(item, data);
                                   }}>
                                   <Image
@@ -244,7 +188,10 @@ const AddFilter = () => {
                                     style={{
                                       height: SIZES.h2,
                                       width: SIZES.h2,
-                                      tintColor: check && COLORS.primary,
+                                      tintColor:
+                                        selectedOptionStates[item.id]?.includes(
+                                          data.id,
+                                        ) && COLORS.primary,
                                     }}
                                   />
                                 </TouchableOpacity>
@@ -263,8 +210,6 @@ const AddFilter = () => {
                       ) : (
                         <View style={{marginTop: SIZES.base}}>
                           {item.optionData.map((data, dataIndex) => {
-                            const isSelected =
-                              selectedRadioStates[index] === data?.id;
                             return (
                               <View
                                 key={dataIndex}
@@ -275,22 +220,14 @@ const AddFilter = () => {
                                 }}>
                                 <TouchableOpacity
                                   style={styles.radioBtnCtn}
-                                  onPress={() => {
-                                    // setSelectedRadioStates(prevStates => {
-                                    //   const newStates = [...prevStates];
-                                    //   newStates[index] = data.id;
-                                    //   return newStates;
-                                    // });
-
-                                    handleRadioSelect(item, data);
-                                  }}>
+                                  onPress={() => handleRadioPress(data.id)}>
                                   <View
                                     style={{
                                       height: SIZES.h4 * 0.9,
                                       width: SIZES.h4 * 0.9,
                                       backgroundColor:
-                                        radioSelection[item.id] === data.id
-                                          ? COLORS.black
+                                        focusedRadio === data.id
+                                          ? COLORS.primary
                                           : COLORS.white,
                                       borderRadius: 100,
                                     }}
@@ -358,6 +295,7 @@ const styles = StyleSheet.create({
     width: SIZES.h2 * 1.1,
     borderRadius: 100,
     borderWidth: 1.7,
+    borderColor: COLORS.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
