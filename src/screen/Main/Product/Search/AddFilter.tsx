@@ -50,6 +50,13 @@ const AddFilter = () => {
     },
   ];
 
+  const [checkBoxStates, setCheckBoxStates] = useState(
+    typeData.map(() => true),
+  );
+  const [selectedOptionStates, setSelectedOptionStates] = useState(
+    typeData.map(() => []),
+  );
+
   return (
     <View style={styles.page}>
       <View style={{flex: 1}}>
@@ -57,9 +64,9 @@ const AddFilter = () => {
         <View style={{}}>
           <FlatList
             data={typeData}
-            renderItem={({item}) => {
+            renderItem={({item, index}) => {
               return (
-                <View style={{marginBottom: SIZES.h5}}>
+                <View key={index} style={{marginBottom: SIZES.h5}}>
                   {/* HEADER */}
                   <View
                     style={{
@@ -75,21 +82,35 @@ const AddFilter = () => {
                       }}>
                       {item.title}
                     </Text>
-                    <TouchableOpacity onPress={() => setCheckBox(!checkBox)}>
+                    {/* DROP DOWN */}
+                    <TouchableOpacity
+                      onPress={() =>
+                        setCheckBoxStates(prevStates => [
+                          ...prevStates.slice(0, index),
+                          !prevStates[index],
+                          ...prevStates.slice(index + 1),
+                        ])
+                      }>
                       <Image
-                        source={checkBox ? icons.arrowdown2 : icons.arrowup}
+                        source={
+                          checkBoxStates[index]
+                            ? icons.arrowdown2
+                            : icons.arrowup
+                        }
                         style={{height: SIZES.h3 * 1.2, width: SIZES.h3 * 1.2}}
                       />
                     </TouchableOpacity>
                   </View>
                   {/* CHECKBOX */}
-                  {checkBox === false && (
+                  {checkBoxStates[index] === false && (
                     <View style={{marginTop: SIZES.base}}>
-                      {item.optionData.map((data, index) => {
-                        const isSelected = selectedOptionIds.includes(data?.id);
+                      {item.optionData.map((data, dataIndex) => {
+                        const isSelected = selectedOptionStates[index].includes(
+                          data?.id,
+                        );
                         return (
                           <View
-                            key={index}
+                            key={dataIndex}
                             style={{
                               flexDirection: 'row',
                               alignItems: 'center',
@@ -97,18 +118,15 @@ const AddFilter = () => {
                             }}>
                             <TouchableOpacity
                               onPress={() => {
-                                if (isSelected) {
-                                  // If already selected, remove from the array
-                                  setSelectedOptionIds(prevIds =>
-                                    prevIds.filter(id => id !== data.id),
-                                  );
-                                } else {
-                                  // If not selected, add to the array
-                                  setSelectedOptionIds(prevIds => [
-                                    ...prevIds,
-                                    data.id,
-                                  ]);
-                                }
+                                setSelectedOptionStates(prevStates => {
+                                  const newStates = [...prevStates];
+                                  newStates[index] = isSelected
+                                    ? newStates[index].filter(
+                                        id => id !== data.id,
+                                      )
+                                    : [...newStates[index], data.id];
+                                  return newStates;
+                                });
                               }}>
                               <Image
                                 source={
