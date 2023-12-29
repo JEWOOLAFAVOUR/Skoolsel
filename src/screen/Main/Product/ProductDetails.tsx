@@ -132,7 +132,7 @@ const ProductDetails = ({route}) => {
               activeOpacity={0.7}
               onPress={() => setShowMore(!showMore)}>
               <Text
-                numberOfLines={showMore ? undefined : 2}
+                numberOfLines={showMore ? undefined : 3}
                 style={{
                   ...FONTS.body5,
                   color: COLORS.chocolate,

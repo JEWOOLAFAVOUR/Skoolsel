@@ -48,6 +48,7 @@ const UploadScreenDetails = () => {
         verified: true,
         location: 'Federal University of Technology Minna',
       },
+
       productImage: [
         {
           img: 'https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
@@ -102,6 +103,7 @@ const UploadScreenDetails = () => {
         <ProductInput
           placeholder="Product description"
           value={productData.description}
+          multine={'true'}
           setValue={value =>
             setProductData(prevData => ({...prevData, description: value}))
           }
