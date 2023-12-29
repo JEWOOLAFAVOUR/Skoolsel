@@ -90,7 +90,7 @@ const SearchScreen = () => {
             data={filteredData}
             renderItem={({item}) => (
               <TouchableOpacity
-                onPress={() => navigation.navigate('SearchResult')}
+                onPress={() => navigation.replace('SearchResult')}
                 style={{marginBottom: SIZES.h5}}>
                 <Text style={{...FONTS.body4, color: COLORS.black}}>
                   {item.title} in{' '}

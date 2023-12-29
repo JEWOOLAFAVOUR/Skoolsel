@@ -7,13 +7,39 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {COLORS, SIZES, icons, FONTS, images} from '../../../../constants';
 import {useNavigation} from '@react-navigation/native';
 import {searchResultData} from '../../../../components/utils/productDetailsData';
 
 const SearchResult = () => {
   const navigation = useNavigation();
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+
+  const realtimeSearchData = [
+    {id: 1, title: 'Samsung', category: 'Phones'},
+    {id: 2, title: 'Laptop', category: 'Phones and laptops'},
+    {id: 3, title: 'Laptop', category: 'laptops'},
+    {id: 4, title: 'Samsung', category: 'laptops'},
+    {id: 5, title: 'Infinix', category: 'phones'},
+    {id: 6, title: 'Infinix', category: 'phones'},
+  ];
+
+  const handleSearch = query => {
+    setSearchQuery(query);
+    setIsSearching(query.length >= 3);
+    if (query.length >= 3) {
+      const filteredItems = realtimeSearchData.filter(item =>
+        item.title.toLowerCase().includes(query.toLowerCase()),
+      );
+      setFilteredData(filteredItems);
+    } else {
+      setFilteredData([]);
+    }
+  };
 
   return (
     <View style={styles.page}>
@@ -24,7 +50,7 @@ const SearchResult = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <TouchableOpacity
+        {/*  <TouchableOpacity
           onPress={() => navigation.navigate('SearchScreen')}
           style={styles.container}>
           <Image
@@ -39,6 +65,24 @@ const SearchResult = () => {
             search product
           </Text>
         </TouchableOpacity>
+          */}
+        <View style={styles.container}>
+          <Image
+            source={icons.search}
+            style={{
+              height: SIZES.h3,
+              width: SIZES.h3,
+              marginRight: SIZES.base * 0.5,
+            }}
+          />
+          <TextInput
+            placeholder="Search product"
+            placeholderTextColor={COLORS.chocolate}
+            style={{...FONTS.body4, color: COLORS.black, flex: 1}}
+            value={searchQuery}
+            onChangeText={handleSearch}
+          />
+        </View>
         <TouchableOpacity
           onPress={() => navigation.navigate('FilterScreen')}
           style={styles.filterCtn}>
@@ -48,7 +92,30 @@ const SearchResult = () => {
           />
         </TouchableOpacity>
       </View>
-      {/* REALTIME SEARCH */}
+      {/* REALTIME AMMENDMENT  */}
+      <View style={{}}>
+        {isSearching && filteredData.length === 0 ? (
+          <Text style={{...FONTS.body4, color: COLORS.black}}>
+            No Search Result
+          </Text>
+        ) : (
+          <FlatList
+            data={filteredData}
+            renderItem={({item}) => (
+              <TouchableOpacity
+                onPress={() => navigation.replace('SearchResult')}
+                style={{marginBottom: SIZES.h5}}>
+                <Text style={{...FONTS.body4, color: COLORS.black}}>
+                  {item.title} in{' '}
+                  <Text style={{color: COLORS.primary}}>{item.category}</Text>
+                </Text>
+              </TouchableOpacity>
+            )}
+          />
+        )}
+      </View>
+
+      {/* REALTIME SEARCH  RESULT DISPLAY */}
       <View style={{marginTop: SIZES.h1, marginBottom: SIZES.h1 * 1.4}}>
         <FlatList
           data={searchResultData}
