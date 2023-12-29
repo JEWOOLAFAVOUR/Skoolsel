@@ -23,6 +23,7 @@ const UploadScreenDetails = () => {
     {label: 'Football', value: 'football'},
     {label: 'Baseball', value: 'baseball'},
     {label: 'Hockey', value: 'hockey'},
+    // {label: 'Hockeys', value: 'hockeyw'},
   ]);
 
   const [productData, setProductData] = useState({

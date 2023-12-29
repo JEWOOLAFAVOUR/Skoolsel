@@ -6,13 +6,8 @@ import {COLORS, FONTS, SIZES} from '../../constants';
 const DropDown = ({placeholder, data, setData}) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'},
-    {label: 'Pear', value: 'pear'},
-  ]);
   return (
-    <View style={{marginBottom: SIZES.h3}}>
+    <View style={{marginBottom: SIZES.h2}}>
       <View style={{flex: 1, zIndex: 1}}>
         <View
           style={{
