@@ -19,11 +19,11 @@ import DropDown from '../../../../components/utils/DropDown';
 const UploadScreenDetails = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const pickerItems = [
+  const [pickerItems, setPickerItems] = useState([
     {label: 'Football', value: 'football'},
     {label: 'Baseball', value: 'baseball'},
     {label: 'Hockey', value: 'hockey'},
-  ];
+  ]);
 
   const [productData, setProductData] = useState({
     category: '',
@@ -46,24 +46,19 @@ const UploadScreenDetails = () => {
     <View style={styles.page}>
       <HeaderA title="Product details" />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <DropDown />
-        <CustomPicker
-          onValueChange={value => console.log(value)}
-          items={pickerItems}
-          placeholder={'Category'}
-        />
-        <CustomPicker
-          onValueChange={value => console.log(value)}
-          items={pickerItems}
-          placeholder={'Select category'}
+        <DropDown
+          placeholder="Category"
+          data={pickerItems}
+          setData={setPickerItems}
         />
         <ProductInput placeholder="Title" />
-        <CustomPicker
-          onValueChange={value => console.log(value)}
-          items={pickerItems}
-          placeholder={'Condition'}
-        />
+
         <ProductInput placeholder="₦ Enter amount" />
+        <DropDown
+          placeholder="Condition"
+          data={pickerItems}
+          setData={setPickerItems}
+        />
         <ProductInput
           placeholder="Product description"
           btnCtn={{height: SIZES.h1 * 5}}
@@ -123,3 +118,14 @@ const pickerSelectStyles = StyleSheet.create({
     paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
+
+// <CustomPicker
+// onValueChange={value => console.log(value)}
+// items={pickerItems}
+// placeholder={'Category'}
+// />
+// <CustomPicker
+// onValueChange={value => console.log(value)}
+// items={pickerItems}
+// placeholder={'Select category'}
+// />

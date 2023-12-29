@@ -8,12 +8,13 @@ import {
 import React from 'react';
 import {COLORS, SIZES, FONTS, icons} from '../../constants';
 
-const ProductInput = ({placeholder, btnCtn}) => {
+const ProductInput = ({placeholder, btnCtn, value, setValue}) => {
   return (
     <View style={[styles.container, btnCtn]}>
       <TextInput
         placeholder={placeholder}
-        // placeholderTextColor="#666666"
+        value={value}
+        onChangeText={setValue}
         placeholderTextColor={COLORS.chocolate}
         style={{...FONTS.body3c, color: COLORS.black}}
       />
