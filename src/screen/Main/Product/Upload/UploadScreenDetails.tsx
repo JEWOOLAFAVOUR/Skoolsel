@@ -14,6 +14,7 @@ import ProductInput from '../../../../components/Input/ProductInput';
 import RNPickerSelect from 'react-native-picker-select';
 import {CustomPicker} from '../../../../components/Button/productComponents';
 import {useDispatch} from 'react-redux';
+import DropDown from '../../../../components/utils/DropDown';
 
 const UploadScreenDetails = () => {
   const navigation = useNavigation();
@@ -45,6 +46,7 @@ const UploadScreenDetails = () => {
     <View style={styles.page}>
       <HeaderA title="Product details" />
       <ScrollView showsVerticalScrollIndicator={false}>
+        <DropDown />
         <CustomPicker
           onValueChange={value => console.log(value)}
           items={pickerItems}
