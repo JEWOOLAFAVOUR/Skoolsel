@@ -26,9 +26,9 @@ export const removeSearchFilter = filter => {
   };
 };
 
-export const postProduct = productPost => {
+export const postProduct = productPosts => {
   return {
     type: POST_PRODUCT,
-    productPost,
+    productPosts,
   };
 };

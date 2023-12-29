@@ -13,9 +13,14 @@ import {useNavigation} from '@react-navigation/native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Modal from 'react-native-modal';
 import {productData} from '../../../components/utils/productDetailsData';
+import {useSelector} from 'react-redux';
 
 const ProductScreen = () => {
   const navigation = useNavigation();
+  const productss = useSelector(state => state.mid?.productPosts);
+
+  console.log('ssssssssssss', productss);
+
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const refRBSheet = useRef();
@@ -62,7 +67,7 @@ const ProductScreen = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setProduct(productData);
+      setProduct(productss);
     }, 1000);
   }, []);
 
@@ -153,6 +158,7 @@ const ProductScreen = () => {
             renderItem={({item}) => {
               return (
                 <TouchableOpacity
+                  activeOpacity={0.7}
                   onPress={() =>
                     navigation.navigate('ProductDetails', {data: item})
                   }
@@ -173,7 +179,7 @@ const ProductScreen = () => {
                         paddingHorizontal: SIZES.width * 0.03,
                       }}>
                       <Image
-                        source={item.seller.avatar}
+                        source={item?.seller?.avatar || icons.avatar}
                         style={{
                           height: SIZES.h1 * 1.2,
                           width: SIZES.h1 * 1.2,
@@ -189,11 +195,11 @@ const ProductScreen = () => {
                               color: COLORS.black,
                               fontFamily: 'OpenSans-Bold',
                             }}>
-                            @{item.seller.username}
+                            @{item?.seller?.username}
                           </Text>
                           <Image
                             source={
-                              item.seller.verified === true && icons.badge
+                              item?.seller?.verified === true && icons.badge
                             }
                             style={{
                               height: SIZES.h3,
@@ -208,7 +214,7 @@ const ProductScreen = () => {
                             color: COLORS.black,
                             fontFamily: 'OpenSans-Regular',
                           }}>
-                          {item.seller.location}
+                          {item?.seller?.location}
                         </Text>
                       </View>
                       <TouchableOpacity onPress={() => openBottomSheet()}>

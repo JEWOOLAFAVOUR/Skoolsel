@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {COLORS, FONTS, SIZES} from '../../constants';
 
@@ -7,12 +7,10 @@ const DropDown = ({placeholder, data, setData, onValueChange}) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
 
-  const handleValueChange = useCallback(
-    newValue => {
-      onValueChange(newValue);
-    },
-    [onValueChange],
-  );
+  console.log('lllllllll', value);
+  useEffect(() => {
+    onValueChange = value;
+  }, [value]);
 
   return (
     <View style={{marginBottom: SIZES.h2}}>
@@ -20,26 +18,15 @@ const DropDown = ({placeholder, data, setData, onValueChange}) => {
         <View
           style={{
             flex: 1,
-            // alignItems: 'center',
-            // justifyContent: 'center',
-            // zIndex: 1000,
           }}>
           <DropDownPicker
             open={open}
             value={value}
             items={data}
             setOpen={setOpen}
-            setValue={() => handleValueChange(value)}
+            setValue={setValue}
             setItems={setData}
             placeholder={placeholder}
-            dropDownContainerStyle={
-              {
-                //   marginBottom: 100,
-              }
-            }
-            // bottomOffset={1000}
-            // zIndex={6000}
-            // zIndexInverse={7000}
             style={{
               backgroundColor: COLORS.offwhite,
               borderColor: COLORS.offwhite,

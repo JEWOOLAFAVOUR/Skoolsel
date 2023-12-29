@@ -1,3 +1,5 @@
+import {productData} from '../../components/utils/productDetailsData';
+import {icons} from '../../constants';
 import {
   UPDATE_SEARCH_FILTER,
   ADD_SEARCH_FILTER,
@@ -7,11 +9,11 @@ import {
 
 const initialState = {
   searchFilter: [],
-  productPost: [],
+  productPosts: productData,
 };
 
 const midReducer = (state = initialState, action) => {
-  const {type, searchFilter, filter, productPost} = action;
+  const {type, searchFilter, filter, productPosts} = action;
 
   switch (type) {
     case UPDATE_SEARCH_FILTER:
@@ -36,7 +38,7 @@ const midReducer = (state = initialState, action) => {
     case POST_PRODUCT:
       return {
         ...state,
-        productPost: [...state.productPost, productPost],
+        productPosts: [productPosts, ...state.productPosts],
       };
     default:
       return state;

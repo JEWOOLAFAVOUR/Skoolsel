@@ -6,7 +6,7 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
-import {COLORS, SIZES, FONTS} from '../../../../constants';
+import {COLORS, SIZES, FONTS, icons} from '../../../../constants';
 import HeaderA from '../../../../components/Header/HeaderA';
 import FormButton from '../../../../components/Button/FormButton';
 import {useNavigation} from '@react-navigation/native';
@@ -15,6 +15,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import {CustomPicker} from '../../../../components/Button/productComponents';
 import {useDispatch} from 'react-redux';
 import DropDown from '../../../../components/utils/DropDown';
+import {postProduct} from '../../../../redux/actions/midAction';
 
 const UploadScreenDetails = () => {
   const navigation = useNavigation();
@@ -27,45 +28,41 @@ const UploadScreenDetails = () => {
   ]);
 
   const [productData, setProductData] = useState({
-    category: '',
+    category: 'sssss',
     title: '',
-    condition: '',
+    condition: 'sssss',
     price: '',
     description: '',
   });
 
   console.log('product data', productData);
 
-  // selectedImage: [
-  //   {
-  //     img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585949/image1_gwseon.png',
-  //   },
-  //   {
-  //     img: 'https://images.pexels.com/photos/15698292/pexels-photo-15698292/free-photo-of-close-up-of-classic-elegant-man-shoes-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  //   },
-  // ],
-
-  // navigation.replace('AppStack', {screen: 'Bottom'})
-
-  const handleTitleChange = value => {
-    setProductData(prevData => ({...prevData, title: value}));
-  };
-
-  const handlePriceChange = value => {
-    setProductData(prevData => ({...prevData, price: value}));
-  };
-
-  const handleConditionChange = value => {
-    setProductData(prevData => ({...prevData, condition: value}));
-  };
-
-  const handleDescriptionChange = value => {
-    setProductData(prevData => ({...prevData, description: value}));
-  };
-
   const handleSubmit = () => {
     console.log('product data', productData);
+    const body = {
+      ...productData,
+      id: Math.random(),
+      seller: {
+        avatar: icons.avatar,
+        username: 'username',
+        verified: true,
+        location: 'Federal University of Technology Minna',
+      },
+      productImage: [
+        {
+          img: 'https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+        },
+        {
+          img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585949/image1_gwseon.png',
+        },
+      ],
+    };
+    dispatch(postProduct(body));
+    navigation.replace('AppStack', {screen: 'Bottom'});
+
+    console.log('boddddddd', body);
   };
+
   return (
     <View style={styles.page}>
       <HeaderA title="Product details" />

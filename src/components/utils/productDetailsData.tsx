@@ -61,7 +61,7 @@ export const productData = [
       },
     ],
   },
-  {
+  /* {
     id: 2,
     title: 'Clean handbag for your simple walk.',
     price: '200,000',
@@ -111,6 +111,7 @@ export const productData = [
       },
     ],
   },
+  */
 ];
 
 export const searchResultData = [

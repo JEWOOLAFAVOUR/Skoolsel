@@ -12,8 +12,8 @@ const handleSearch = store => {
 };
 
 const handlePost = store => {
-  const postData = store.getState().mid?.productPost;
-  console.log('product post.....', postData);
+  const postData = store.getState().mid?.productPosts;
+  console.log('post dispatch in store.....', postData);
 };
 
 const reduxStore = createStore(
