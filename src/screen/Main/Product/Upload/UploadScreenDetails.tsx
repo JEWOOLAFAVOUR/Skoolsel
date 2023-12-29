@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {COLORS, SIZES, FONTS} from '../../../../constants';
 import HeaderA from '../../../../components/Header/HeaderA';
 import FormButton from '../../../../components/Button/FormButton';
@@ -13,14 +13,34 @@ import {useNavigation} from '@react-navigation/native';
 import ProductInput from '../../../../components/Input/ProductInput';
 import RNPickerSelect from 'react-native-picker-select';
 import {CustomPicker} from '../../../../components/Button/productComponents';
+import {useDispatch} from 'react-redux';
 
 const UploadScreenDetails = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const pickerItems = [
     {label: 'Football', value: 'football'},
     {label: 'Baseball', value: 'baseball'},
     {label: 'Hockey', value: 'hockey'},
   ];
+
+  const [productData, setProductData] = useState({
+    category: '',
+    title: '',
+    condition: '',
+    price: '',
+    description: '',
+    selectedImage: [
+      {
+        img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585949/image1_gwseon.png',
+      },
+      {
+        img: 'https://images.pexels.com/photos/15698292/pexels-photo-15698292/free-photo-of-close-up-of-classic-elegant-man-shoes-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      },
+    ],
+  });
+
+  const handleSubmit = () => {};
   return (
     <View style={styles.page}>
       <HeaderA title="Product details" />
