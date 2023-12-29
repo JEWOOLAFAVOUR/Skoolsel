@@ -26,38 +26,14 @@ const ProductScreen = () => {
   const refRBSheet = useRef();
   const [product, setProduct] = useState([]);
 
-  const [numOfLines, setNumOfLines] = useState(2);
+  // const [showMore, setShowMore] = useState(false);
+  const [showMoreStates, setShowMoreStates] = useState({});
 
-  const toggleNumOfLines = () => {
-    setNumOfLines(prevNum => (prevNum === 2 ? null : 2));
-  };
-
-  const renderSeeMoreLess = () => {
-    if (numOfLines === 2) {
-      return (
-        <Text
-          style={{
-            ...FONTS.body5,
-            fontFamily: 'OpenSans-Medium',
-            color: COLORS.black,
-            textAlign: 'right',
-          }}>
-          See More
-        </Text>
-      );
-    } else {
-      return (
-        <Text
-          style={{
-            ...FONTS.body5,
-            fontFamily: 'OpenSans-Medium',
-            color: COLORS.black,
-            textAlign: 'right',
-          }}>
-          See Less
-        </Text>
-      );
-    }
+  const toggleShowMore = itemId => {
+    setShowMoreStates(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId] || false,
+    }));
   };
 
   const openBottomSheet = () => {
@@ -156,6 +132,7 @@ const ProductScreen = () => {
             showsVerticalScrollIndicator={false}
             ListEmptyComponent={RenderEmpty}
             renderItem={({item}) => {
+              const showMore = showMoreStates[item.id] || false;
               return (
                 <TouchableOpacity
                   activeOpacity={0.7}
@@ -278,17 +255,16 @@ const ProductScreen = () => {
                           {item.title}
                         </Text>
                         <TouchableOpacity
-                          activeOpacity={0.7}
-                          onPress={toggleNumOfLines}>
+                          onPress={() => toggleShowMore(item.id)}
+                          activeOpacity={0.7}>
                           <Text
-                            numberOfLines={numOfLines}
+                            numberOfLines={showMore ? undefined : 2}
                             style={{
                               ...FONTS.body5,
                               color: COLORS.chocolate,
                             }}>
                             {item?.description}
                           </Text>
-                          {renderSeeMoreLess()}
                         </TouchableOpacity>
                         <Text style={{...FONTS.body5a, color: COLORS.black}}>
                           {item.createdAt}

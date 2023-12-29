@@ -17,37 +17,7 @@ const ProductDetails = ({route}) => {
   const productData = route?.params?.data || singleData;
   const [numOfLines, setNumOfLines] = useState(3);
 
-  const toggleNumOfLines = () => {
-    setNumOfLines(prevNum => (prevNum === 3 ? null : 3));
-  };
-
-  const renderSeeMoreLess = () => {
-    if (numOfLines === 3) {
-      return (
-        <Text
-          style={{
-            ...FONTS.body5,
-            fontFamily: 'OpenSans-Medium',
-            color: COLORS.black,
-            textAlign: 'right',
-          }}>
-          See More
-        </Text>
-      );
-    } else {
-      return (
-        <Text
-          style={{
-            ...FONTS.body5,
-            fontFamily: 'OpenSans-Medium',
-            color: COLORS.black,
-            textAlign: 'right',
-          }}>
-          See Less
-        </Text>
-      );
-    }
-  };
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <View style={styles.page}>
@@ -158,16 +128,17 @@ const ProductDetails = ({route}) => {
             <Text style={{...FONTS.body4, color: COLORS.black}}>
               Description
             </Text>
-            <TouchableOpacity activeOpacity={0.7} onPress={toggleNumOfLines}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => setShowMore(!showMore)}>
               <Text
-                numberOfLines={numOfLines}
+                numberOfLines={showMore ? undefined : 2}
                 style={{
                   ...FONTS.body5,
                   color: COLORS.chocolate,
                 }}>
                 {productData?.description}
               </Text>
-              {renderSeeMoreLess()}
             </TouchableOpacity>
           </View>
         </View>
