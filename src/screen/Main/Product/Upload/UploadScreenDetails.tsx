@@ -21,16 +21,16 @@ const UploadScreenDetails = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [pickerItems, setPickerItems] = useState([
-    {label: 'Football', value: 'football'},
-    {label: 'Baseball', value: 'baseball'},
-    {label: 'Hockey', value: 'hockey'},
+    {label: 'Fashion', value: 'Fashio'},
+    {label: 'Books', value: 'Books'},
+    {label: 'Shoe', value: 'Shoe'},
     // {label: 'Hockeys', value: 'hockeyw'},
   ]);
 
   const [productData, setProductData] = useState({
-    category: 'sssss',
+    category: '',
     title: '',
-    condition: 'sssss',
+    condition: '',
     price: '',
     description: '',
   });

@@ -9,7 +9,7 @@ const DropDown = ({placeholder, data, setData, onValueChange}) => {
 
   console.log('lllllllll', value);
   useEffect(() => {
-    onValueChange = value;
+    onValueChange(value);
   }, [value]);
 
   return (

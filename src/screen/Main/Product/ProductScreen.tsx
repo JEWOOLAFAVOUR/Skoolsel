@@ -22,14 +22,11 @@ const ProductScreen = () => {
   const navigation = useNavigation();
   const productss = useSelector(state => state.mid?.productPosts);
 
-  console.log('ssssssssssss', productss);
-
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const refRBSheet = useRef();
   const [product, setProduct] = useState([]);
 
-  // const [showMore, setShowMore] = useState(false);
   const [showMoreStates, setShowMoreStates] = useState({});
 
   const toggleShowMore = itemId => {
@@ -145,12 +142,7 @@ const ProductScreen = () => {
                   }
                   SearchScreen
                   style={{marginBottom: SIZES.h2}}>
-                  <View
-                    style={
-                      {
-                        /*paddingHorizontal: SIZES.width * 0.03*/
-                      }
-                    }>
+                  <View>
                     {/* FIRST PART */}
                     <View
                       style={{
@@ -410,7 +402,6 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: COLORS.white,
-    // paddingTop: SIZES.h5,
   },
   bottomText: {
     color: COLORS.black,

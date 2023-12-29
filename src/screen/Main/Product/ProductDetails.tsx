@@ -10,7 +10,10 @@ import React, {useState} from 'react';
 import HeaderA from '../../../components/Header/HeaderA';
 import ImageSliderComponent from '../../../components/utils/ImageSliderComponent';
 import {images, icons, FONTS, COLORS, SIZES} from '../../../constants';
-import {singleData} from '../../../components/utils/productDetailsData';
+import {
+  formatTimeAgo,
+  singleData,
+} from '../../../components/utils/productDetailsData';
 
 const ProductDetails = ({route}) => {
   const [toogle, setToogle] = useState(false);
@@ -18,6 +21,8 @@ const ProductDetails = ({route}) => {
   const [numOfLines, setNumOfLines] = useState(3);
 
   const [showMore, setShowMore] = useState(false);
+
+  const formattedTime = formatTimeAgo(productData?.createdAt);
 
   return (
     <View style={styles.page}>
@@ -74,9 +79,8 @@ const ProductDetails = ({route}) => {
               style={{
                 ...FONTS.body5,
                 color: COLORS.chocolate,
-                // marginTop: SIZES.base * 0.5,
               }}>
-              {productData?.createdAt}
+              {formattedTime}
             </Text>
           </View>
 
