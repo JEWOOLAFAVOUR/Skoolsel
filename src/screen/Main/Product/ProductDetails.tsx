@@ -11,7 +11,7 @@ import HeaderA from '../../../components/Header/HeaderA';
 import ImageSliderComponent from '../../../components/utils/ImageSliderComponent';
 import {images, icons, FONTS, COLORS, SIZES} from '../../../constants';
 import {
-  formatTimeAgo,
+  RealTimeFormattedTime,
   singleData,
 } from '../../../components/utils/productDetailsData';
 
@@ -21,8 +21,6 @@ const ProductDetails = ({route}) => {
   const [numOfLines, setNumOfLines] = useState(3);
 
   const [showMore, setShowMore] = useState(false);
-
-  const formattedTime = formatTimeAgo(productData?.createdAt);
 
   return (
     <View style={styles.page}>
@@ -75,13 +73,7 @@ const ProductDetails = ({route}) => {
                 (234 View)
               </Text>
             </View>
-            <Text
-              style={{
-                ...FONTS.body5,
-                color: COLORS.chocolate,
-              }}>
-              {formattedTime}
-            </Text>
+            <RealTimeFormattedTime createdAt={productData.createdAt} />
           </View>
 
           {/* BIO */}

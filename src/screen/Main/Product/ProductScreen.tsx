@@ -13,6 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Modal from 'react-native-modal';
 import {
+  RealTimeFormattedTime,
   formatTimeAgo,
   productData,
 } from '../../../components/utils/productDetailsData';
@@ -42,9 +43,9 @@ const ProductScreen = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setProduct(productss);
-    }, 1000);
+    // setTimeout(() => {
+    setProduct(productss);
+    // }, 1000);
   }, []);
 
   const RenderEmpty = () => {
@@ -128,9 +129,9 @@ const ProductScreen = () => {
         <View style={{marginTop: SIZES.base}}>
           <FlatList
             // data={productData}
-            data={product}
+            data={productss}
             showsVerticalScrollIndicator={false}
-            ListEmptyComponent={RenderEmpty}
+            // ListEmptyComponent={RenderEmpty}
             renderItem={({item}) => {
               const showMore = showMoreStates[item.id] || false;
               const formattedTime = formatTimeAgo(item.createdAt);
@@ -262,9 +263,10 @@ const ProductScreen = () => {
                             {item?.description}
                           </Text>
                         </TouchableOpacity>
-                        <Text style={{...FONTS.body5a, color: COLORS.black}}>
+                        {/*<Text style={{...FONTS.body5a, color: COLORS.black}}>
                           {formattedTime}
-                        </Text>
+                          </Text>*/}
+                        <RealTimeFormattedTime createdAt={item.createdAt} />
                       </View>
                     </View>
                   </View>

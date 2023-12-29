@@ -1,5 +1,7 @@
-import {icons, images} from '../../constants';
+import {icons, images, COLORS, FONTS} from '../../constants';
+import React, {useState, useEffect} from 'react';
 import moment from 'moment';
+import {Text} from 'react-native';
 
 export const formatTimeAgo = createdAt => {
   const currentTime = Date.now();
@@ -17,6 +19,22 @@ export const formatTimeAgo = createdAt => {
   } else {
     return moment(createdAt).fromNow();
   }
+};
+
+export const RealTimeFormattedTime = ({createdAt}) => {
+  const [formattedTime, setFormattedTime] = useState(formatTimeAgo(createdAt));
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setFormattedTime(formatTimeAgo(createdAt));
+    }, 60000);
+
+    return () => clearInterval(intervalId);
+  }, [createdAt]);
+
+  return (
+    <Text style={{...FONTS.body5a, color: COLORS.black}}>{formattedTime}</Text>
+  );
 };
 
 export const sliderData = [
