@@ -12,7 +12,10 @@ import ImageSliderComponent from '../../../components/utils/ImageSliderComponent
 import {useNavigation} from '@react-navigation/native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Modal from 'react-native-modal';
-import {productData} from '../../../components/utils/productDetailsData';
+import {
+  formatTimeAgo,
+  productData,
+} from '../../../components/utils/productDetailsData';
 import {useSelector} from 'react-redux';
 
 const ProductScreen = () => {
@@ -133,6 +136,7 @@ const ProductScreen = () => {
             ListEmptyComponent={RenderEmpty}
             renderItem={({item}) => {
               const showMore = showMoreStates[item.id] || false;
+              const formattedTime = formatTimeAgo(item.createdAt);
               return (
                 <TouchableOpacity
                   activeOpacity={0.7}
@@ -267,7 +271,7 @@ const ProductScreen = () => {
                           </Text>
                         </TouchableOpacity>
                         <Text style={{...FONTS.body5a, color: COLORS.black}}>
-                          {item.createdAt}
+                          {formattedTime}
                         </Text>
                       </View>
                     </View>

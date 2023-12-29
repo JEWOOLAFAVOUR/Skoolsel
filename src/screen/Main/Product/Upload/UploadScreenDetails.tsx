@@ -48,7 +48,7 @@ const UploadScreenDetails = () => {
         verified: true,
         location: 'Federal University of Technology Minna',
       },
-
+      createdAt: Date.now(),
       productImage: [
         {
           img: 'https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',

@@ -1,4 +1,23 @@
 import {icons, images} from '../../constants';
+import moment from 'moment';
+
+export const formatTimeAgo = createdAt => {
+  const currentTime = Date.now();
+  const diffInMilliseconds = currentTime - createdAt;
+  const duration = moment.duration(diffInMilliseconds);
+
+  if (duration.asMinutes() < 1) {
+    return 'just now';
+  } else if (duration.asHours() < 1) {
+    const minutesAgo = Math.floor(duration.asMinutes());
+    return `${minutesAgo} ${minutesAgo === 1 ? 'minute' : 'minutes'} ago`;
+  } else if (duration.asDays() < 1) {
+    const hoursAgo = Math.floor(duration.asHours());
+    return `${hoursAgo} ${hoursAgo === 1 ? 'hour' : 'hours'} ago`;
+  } else {
+    return moment(createdAt).fromNow();
+  }
+};
 
 export const sliderData = [
   {
@@ -39,7 +58,7 @@ export const productData = [
     id: 1,
     title: 'Clean handbag for your simple walk.',
     price: '200,000',
-    createdAt: '2hrs ago',
+    createdAt: '1703857212804',
     seller: {
       avatar: icons.avatar,
       username: 'username',
@@ -61,11 +80,11 @@ export const productData = [
       },
     ],
   },
-  /* {
+  {
     id: 2,
     title: 'Clean handbag for your simple walk.',
     price: '200,000',
-    createdAt: '2hrs ago',
+    createdAt: '1703856759447',
     seller: {
       avatar: icons.avatar,
       username: 'username',
@@ -92,7 +111,7 @@ export const productData = [
     id: 3,
     title: 'Clean handbag for your simple walk.',
     price: '200,000',
-    createdAt: '2hrs ago',
+    createdAt: '1703856759447',
     seller: {
       avatar: icons.avatar,
       username: 'username',
@@ -111,7 +130,6 @@ export const productData = [
       },
     ],
   },
-  */
 ];
 
 export const searchResultData = [
