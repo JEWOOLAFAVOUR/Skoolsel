@@ -24,7 +24,7 @@ const ProductInput = ({
         onChangeText={setValue}
         placeholderTextColor={COLORS.chocolate}
         keyboardType={keyboardType}
-        // multiline-{multiline}
+        multiline={multiline}
         style={{...FONTS.body3c, color: COLORS.black}}
       />
     </View>

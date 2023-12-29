@@ -103,7 +103,7 @@ const UploadScreenDetails = () => {
         <ProductInput
           placeholder="Product description"
           value={productData.description}
-          multilines={'true'}
+          multiline={true}
           setValue={value =>
             setProductData(prevData => ({...prevData, description: value}))
           }
