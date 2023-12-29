@@ -1,11 +1,19 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {COLORS, FONTS, SIZES} from '../../constants';
 
-const DropDown = ({placeholder, data, setData}) => {
+const DropDown = ({placeholder, data, setData, onValueChange}) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
+
+  const handleValueChange = useCallback(
+    newValue => {
+      onValueChange(newValue);
+    },
+    [onValueChange],
+  );
+
   return (
     <View style={{marginBottom: SIZES.h2}}>
       <View style={{flex: 1, zIndex: 1}}>
@@ -21,7 +29,7 @@ const DropDown = ({placeholder, data, setData}) => {
             value={value}
             items={data}
             setOpen={setOpen}
-            setValue={setValue}
+            setValue={() => handleValueChange(value)}
             setItems={setData}
             placeholder={placeholder}
             dropDownContainerStyle={

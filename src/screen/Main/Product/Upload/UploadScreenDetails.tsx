@@ -32,17 +32,40 @@ const UploadScreenDetails = () => {
     condition: '',
     price: '',
     description: '',
-    selectedImage: [
-      {
-        img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585949/image1_gwseon.png',
-      },
-      {
-        img: 'https://images.pexels.com/photos/15698292/pexels-photo-15698292/free-photo-of-close-up-of-classic-elegant-man-shoes-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      },
-    ],
   });
 
-  const handleSubmit = () => {};
+  console.log('product data', productData);
+
+  // selectedImage: [
+  //   {
+  //     img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585949/image1_gwseon.png',
+  //   },
+  //   {
+  //     img: 'https://images.pexels.com/photos/15698292/pexels-photo-15698292/free-photo-of-close-up-of-classic-elegant-man-shoes-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  //   },
+  // ],
+
+  // navigation.replace('AppStack', {screen: 'Bottom'})
+
+  const handleTitleChange = value => {
+    setProductData(prevData => ({...prevData, title: value}));
+  };
+
+  const handlePriceChange = value => {
+    setProductData(prevData => ({...prevData, price: value}));
+  };
+
+  const handleConditionChange = value => {
+    setProductData(prevData => ({...prevData, condition: value}));
+  };
+
+  const handleDescriptionChange = value => {
+    setProductData(prevData => ({...prevData, description: value}));
+  };
+
+  const handleSubmit = () => {
+    console.log('product data', productData);
+  };
   return (
     <View style={styles.page}>
       <HeaderA title="Product details" />
@@ -51,26 +74,46 @@ const UploadScreenDetails = () => {
           placeholder="Category"
           data={pickerItems}
           setData={setPickerItems}
+          onValueChange={value =>
+            setProductData(prevData => ({...prevData, category: value}))
+          }
         />
-        <ProductInput placeholder="Title" />
+        <ProductInput
+          placeholder="Title"
+          value={productData.title}
+          setValue={value =>
+            setProductData(prevData => ({...prevData, title: value}))
+          }
+        />
 
-        <ProductInput placeholder="₦ Enter amount" />
+        <ProductInput
+          placeholder="₦ Enter amount"
+          keyboardType="numeric"
+          value={productData.price}
+          setValue={value =>
+            setProductData(prevData => ({...prevData, price: value}))
+          }
+        />
         <DropDown
           placeholder="Condition"
           data={pickerItems}
           setData={setPickerItems}
+          onValueChange={value =>
+            setProductData(prevData => ({...prevData, condition: value}))
+          }
         />
         <ProductInput
           placeholder="Product description"
+          value={productData.description}
+          setValue={value =>
+            setProductData(prevData => ({...prevData, description: value}))
+          }
           btnCtn={{height: SIZES.h1 * 5}}
         />
 
         {/* BUTTON */}
         <View style={{marginTop: SIZES.h2}}>
-          <FormButton
-            title="Post"
-            onPress={() => navigation.replace('AppStack', {screen: 'Bottom'})}
-          />
+          <FormButton title="Post" onPress={() => handleSubmit()} />
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Text
               style={{
