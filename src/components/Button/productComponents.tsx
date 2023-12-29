@@ -35,7 +35,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 4,
-    color: 'black',
+    color: 'red',
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {

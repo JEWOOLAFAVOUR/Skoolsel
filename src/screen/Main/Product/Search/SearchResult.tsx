@@ -56,7 +56,10 @@ const SearchResult = () => {
           renderItem={({item}) => {
             return (
               <View style={{marginBottom: SIZES.h4}}>
-                <TouchableOpacity style={styles.searchContainer}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('ProductDetails')}
+                  activeOpacity={0.95}
+                  style={styles.searchContainer}>
                   <Image
                     source={{uri: item.productImage}}
                     style={{
@@ -71,6 +74,7 @@ const SearchResult = () => {
                         {item.title}
                       </Text>
                       <Text
+                        numberOfLines={3}
                         style={{
                           fontSize: SIZES.body5,
                           fontFamily: 'OpenSans-Regular',

@@ -1,7 +1,6 @@
 import {persistCombineReducers} from 'redux-persist';
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import authReducer from './authReducer';
 import midReducer from './midReducer';
 
 const config = {
@@ -11,7 +10,6 @@ const config = {
 };
 
 const appReducer = persistCombineReducers(config, {
-  auth: authReducer,
   mid: midReducer,
 });
 

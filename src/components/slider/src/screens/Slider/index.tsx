@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, TextInput, StyleSheet} from 'react-native';
 import Slider from 'rn-range-slider';
 
 import Thumb from '../../Slider/Thumb';
@@ -11,7 +11,14 @@ import Label from '../../Slider/Label';
 import styles from './styles';
 import {SIZES, COLORS, FONTS} from '../../../../../constants';
 
-const SliderScreen = ({slideLow, slideHigh, selected, onHighValueChange}) => {
+const SliderScreen = ({
+  slideLow,
+  slideHigh,
+  selected,
+  onHighValueChange,
+  value,
+  setValue,
+}) => {
   const [rangeDisabled, setRangeDisabled] = useState(false);
   const [low, setLow] = useState(0);
   const [high, setHigh] = useState(100);
@@ -35,7 +42,7 @@ const SliderScreen = ({slideLow, slideHigh, selected, onHighValueChange}) => {
   }, []);
 
   return (
-    <View>
+    <View style={{marginRight: SIZES.h2}}>
       <View
         style={{
           flexDirection: 'row',
@@ -44,6 +51,16 @@ const SliderScreen = ({slideLow, slideHigh, selected, onHighValueChange}) => {
           marginBottom: -SIZES.h3,
         }}>
         <Text style={{...FONTS.body3c, color: COLORS.black}}>₦{low}</Text>
+        <View style={styles.inputCtn}>
+          <TextInput
+            placeholder="0.00"
+            placeholderTextColor={COLORS.black}
+            keyboardType="numeric"
+            value={value}
+            onChangeText={setValue}
+            style={{...FONTS.body4, color: COLORS.black}}
+          />
+        </View>
         <Text style={{...FONTS.body3c, color: COLORS.black}}>₦{slideHigh}</Text>
       </View>
       <Slider

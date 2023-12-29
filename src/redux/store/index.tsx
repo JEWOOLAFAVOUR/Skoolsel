@@ -1,9 +1,7 @@
 import {createStore, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import promiseMiddleware from '../middleware/ApiCalls';
 
 import rootReducer from '../reducers';
-import {checkTokenExpiration} from '../reducers/midToken';
 
 // let middleware = [thunk, checkTokenExpiration];
 let middleware = [thunk];
@@ -13,11 +11,17 @@ const handleSearch = store => {
   console.log('user search.....', userState);
 };
 
+const handlePost = store => {
+  const postData = store.getState().mid?.productPost;
+  console.log('product post.....', postData);
+};
+
 const reduxStore = createStore(
   rootReducer,
   compose(applyMiddleware(...middleware)),
 );
 
 reduxStore.subscribe(() => handleSearch(reduxStore));
+reduxStore.subscribe(() => handlePost(reduxStore));
 
 export default reduxStore;

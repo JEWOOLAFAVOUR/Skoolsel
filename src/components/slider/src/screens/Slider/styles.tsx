@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {SIZES} from '../../../../../constants';
+import {COLORS, SIZES} from '../../../../../constants';
 
 export default StyleSheet.create({
   root: {
@@ -24,5 +24,14 @@ export default StyleSheet.create({
   valueText: {
     color: 'white',
     fontSize: 20,
+  },
+  inputCtn: {
+    height: SIZES.h1 * 1.5,
+    width: SIZES.h1 * 4.7,
+    // borderWidth: 1,
+    borderRadius: SIZES.base,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.offwhite,
   },
 });

@@ -15,6 +15,7 @@ import {singleData} from '../../../components/utils/productDetailsData';
 const ProductDetails = ({route}) => {
   const [toogle, setToogle] = useState(false);
   const productData = route?.params?.data || singleData;
+  const [numOfLine, setNumOfLine] = useState(3);
   return (
     <View style={styles.page}>
       {/* FOR HEADER CAN BE REUSABLE */}
@@ -124,13 +125,16 @@ const ProductDetails = ({route}) => {
             <Text style={{...FONTS.body4, color: COLORS.black}}>
               Description
             </Text>
-            <Text
-              style={{
-                ...FONTS.body5,
-                color: COLORS.chocolate,
-              }}>
-              {productData?.description}
-            </Text>
+            <TouchableOpacity onPress={() => setNumOfLine(5)}>
+              <Text
+                numberOfLines={numOfLine}
+                style={{
+                  ...FONTS.body5,
+                  color: COLORS.chocolate,
+                }}>
+                {productData?.description}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>

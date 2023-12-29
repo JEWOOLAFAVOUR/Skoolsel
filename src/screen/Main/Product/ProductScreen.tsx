@@ -124,12 +124,19 @@ const ProductScreen = () => {
                   }
                   SearchScreen
                   style={{marginBottom: SIZES.h2}}>
-                  <View style={{paddingHorizontal: SIZES.width * 0.03}}>
+                  <View
+                    style={
+                      {
+                        /*paddingHorizontal: SIZES.width * 0.03*/
+                      }
+                    }>
+                    {/* FIRST PART */}
                     <View
                       style={{
                         flexDirection: 'row',
                         alignItems: 'center',
                         marginBottom: SIZES.h5,
+                        paddingHorizontal: SIZES.width * 0.03,
                       }}>
                       <Image
                         source={item.seller.avatar}
@@ -177,9 +184,15 @@ const ProductScreen = () => {
                         />
                       </TouchableOpacity>
                     </View>
+
+                    {/*SECOND PART */}
                     <View>
                       {/* SLIDER */}
-                      <View>
+                      <View
+                        style={{
+                          paddingHorizontal: SIZES.width * 0.02,
+                          // backgroundColor: 'red',
+                        }}>
                         <ImageSliderComponent imgData={item.productImage} />
                         <View style={styles.priceCtn}>
                           <Text style={{...FONTS.body4, color: COLORS.white}}>
@@ -188,48 +201,50 @@ const ProductScreen = () => {
                         </View>
                       </View>
                       {/* CATEGORY  */}
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          marginTop: SIZES.h5,
-                          marginBottom: SIZES.base,
-                        }}>
+                      <View style={{paddingHorizontal: SIZES.width * 0.03}}>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            marginTop: SIZES.h5,
+                            marginBottom: SIZES.base,
+                          }}>
+                          <Text
+                            style={{
+                              ...FONTS.body4,
+                              color: COLORS.black,
+                              fontFamily: 'OpenSans-Medium',
+                            }}>
+                            {item.category}
+                          </Text>
+                          <TouchableOpacity>
+                            <Image
+                              source={icons.bookmark}
+                              style={{
+                                height: SIZES.h2 * 1.1,
+                                width: SIZES.h2 * 1.1,
+                              }}
+                            />
+                          </TouchableOpacity>
+                        </View>
+                        {/* DETAILS */}
                         <Text
                           style={{
                             ...FONTS.body4,
                             color: COLORS.black,
                             fontFamily: 'OpenSans-Medium',
                           }}>
-                          {item.category}
+                          {item.title}
                         </Text>
-                        <TouchableOpacity>
-                          <Image
-                            source={icons.bookmark}
-                            style={{
-                              height: SIZES.h2 * 1.1,
-                              width: SIZES.h2 * 1.1,
-                            }}
-                          />
-                        </TouchableOpacity>
+                        <Text style={{...FONTS.body4b, color: COLORS.black}}>
+                          Introducing our sleek and versatile crossbody bag,
+                          perfect for any occasion. With multiple compactment
+                        </Text>
+                        <Text style={{...FONTS.body5a, color: COLORS.black}}>
+                          {item.createdAt}
+                        </Text>
                       </View>
-                      {/* DETAILS */}
-                      <Text
-                        style={{
-                          ...FONTS.body4,
-                          color: COLORS.black,
-                          fontFamily: 'OpenSans-Medium',
-                        }}>
-                        {item.title}
-                      </Text>
-                      <Text style={{...FONTS.body4b, color: COLORS.black}}>
-                        Introducing our sleek and versatile crossbody bag,
-                        perfect for any occasion. With multiple compactment
-                      </Text>
-                      <Text style={{...FONTS.body5a, color: COLORS.black}}>
-                        {item.createdAt}
-                      </Text>
                     </View>
                   </View>
                   <View

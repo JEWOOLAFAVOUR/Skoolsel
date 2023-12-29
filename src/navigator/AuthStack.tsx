@@ -6,13 +6,11 @@ import VerificationScreen from '../screen/Auth/Verification/VerificationScreen';
 import VerificationType from '../screen/Auth/Verification/VerificationType';
 import UploadProfilePic from '../screen/Auth/Verification/UploadProfilePic';
 import RegistrationDone from '../screen/Auth/Verification/RegistrationDone';
-import AddFilter from '../screen/Main/Product/Search/AddFilter';
 
 const AuthStack = () => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="AddFilter" component={AddFilter} />
       <Stack.Screen name="Splash" component={Splash} />
       {/* VERIFICATION  */}
       <Stack.Screen name="VerificationScreen" component={VerificationScreen} />

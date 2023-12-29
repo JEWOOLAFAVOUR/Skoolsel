@@ -10,18 +10,25 @@ const ImageSliderComponent = ({imgData}) => {
       <ImageSlider
         preview={false}
         data={imgData}
-        autoPlay={true}
+        // autoPlay={true}
         closeIconColor="#fff"
         caroselImageContainerStyle={{
           height: SIZES.height * 0.38,
-          width: SIZES.width,
-          alignItems: 'center',
-          justifyContent: 'center',
+          // width: SIZES.width,
+          // alignItems: 'center',
+          // justifyContent: 'center',
+          // alignSelf: 'center',
           top: SIZES.base,
           borderRadius: SIZES.h5,
         }}
         caroselImageStyle={{
-          borderRadius: SIZES.h5,
+          // borderRadius: 3,
+          height: SIZES.height * 0.38,
+          // width: SIZES.width,
+          // alignItems: 'center',
+          // justifyContent: 'center',
+          // alignSelf: 'center',
+          // resizeMode: 'contain',
         }}
         activeIndicatorStyle={{
           backgroundColor: COLORS.secondary,
@@ -35,7 +42,7 @@ const ImageSliderComponent = ({imgData}) => {
           borderRadius: SIZES.base,
         }}
         indicatorContainerStyle={{top: SIZES.h1 * 1.2}}
-        autoplayInterval={4000}
+        autoplayInterval={10000}
       />
     </View>
   );

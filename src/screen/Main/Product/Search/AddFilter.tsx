@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ScrollView,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {COLORS, SIZES, icons, FONTS} from '../../../../constants';
@@ -110,13 +111,13 @@ const AddFilter = () => {
 
   return (
     <View style={styles.page}>
-      <View style={{flex: 1}}>
+      <View style={{paddingBottom: SIZES.h1}}>
         <HeaderA
           title="Add filter"
           topCtn={true}
           topText={`${searchQuery.length} Filters applied`}
         />
-        <View style={{}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <FlatList
             data={typeData}
             renderItem={({item, index}) => {
@@ -270,12 +271,13 @@ const AddFilter = () => {
               onHighValueChange={highValue => setSelectedData(highValue)}
             />
           </View>
-        </View>
+          <FormButton
+            title="Apply filter"
+            onPress={() => navigation.navigate('SearchScreen')}
+            btnStyle={{marginTop: SIZES.h1}}
+          />
+        </ScrollView>
       </View>
-      <FormButton
-        title="Apply filter"
-        onPress={() => navigation.navigate('SearchScreen')}
-      />
     </View>
   );
 };
