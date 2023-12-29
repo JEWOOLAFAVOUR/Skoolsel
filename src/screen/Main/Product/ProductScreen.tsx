@@ -21,6 +21,40 @@ const ProductScreen = () => {
   const refRBSheet = useRef();
   const [product, setProduct] = useState([]);
 
+  const [numOfLines, setNumOfLines] = useState(2);
+
+  const toggleNumOfLines = () => {
+    setNumOfLines(prevNum => (prevNum === 2 ? null : 2));
+  };
+
+  const renderSeeMoreLess = () => {
+    if (numOfLines === 2) {
+      return (
+        <Text
+          style={{
+            ...FONTS.body5,
+            fontFamily: 'OpenSans-Medium',
+            color: COLORS.black,
+            textAlign: 'right',
+          }}>
+          See More
+        </Text>
+      );
+    } else {
+      return (
+        <Text
+          style={{
+            ...FONTS.body5,
+            fontFamily: 'OpenSans-Medium',
+            color: COLORS.black,
+            textAlign: 'right',
+          }}>
+          See Less
+        </Text>
+      );
+    }
+  };
+
   const openBottomSheet = () => {
     // setBottomSheetVisible(true);
     refRBSheet.current.open();
@@ -237,10 +271,19 @@ const ProductScreen = () => {
                           }}>
                           {item.title}
                         </Text>
-                        <Text style={{...FONTS.body4b, color: COLORS.black}}>
-                          Introducing our sleek and versatile crossbody bag,
-                          perfect for any occasion. With multiple compactment
-                        </Text>
+                        <TouchableOpacity
+                          activeOpacity={0.7}
+                          onPress={toggleNumOfLines}>
+                          <Text
+                            numberOfLines={numOfLines}
+                            style={{
+                              ...FONTS.body5,
+                              color: COLORS.chocolate,
+                            }}>
+                            {item?.description}
+                          </Text>
+                          {renderSeeMoreLess()}
+                        </TouchableOpacity>
                         <Text style={{...FONTS.body5a, color: COLORS.black}}>
                           {item.createdAt}
                         </Text>

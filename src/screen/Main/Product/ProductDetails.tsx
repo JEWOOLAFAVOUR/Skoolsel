@@ -15,7 +15,40 @@ import {singleData} from '../../../components/utils/productDetailsData';
 const ProductDetails = ({route}) => {
   const [toogle, setToogle] = useState(false);
   const productData = route?.params?.data || singleData;
-  const [numOfLine, setNumOfLine] = useState(3);
+  const [numOfLines, setNumOfLines] = useState(3);
+
+  const toggleNumOfLines = () => {
+    setNumOfLines(prevNum => (prevNum === 3 ? null : 3));
+  };
+
+  const renderSeeMoreLess = () => {
+    if (numOfLines === 3) {
+      return (
+        <Text
+          style={{
+            ...FONTS.body5,
+            fontFamily: 'OpenSans-Medium',
+            color: COLORS.black,
+            textAlign: 'right',
+          }}>
+          See More
+        </Text>
+      );
+    } else {
+      return (
+        <Text
+          style={{
+            ...FONTS.body5,
+            fontFamily: 'OpenSans-Medium',
+            color: COLORS.black,
+            textAlign: 'right',
+          }}>
+          See Less
+        </Text>
+      );
+    }
+  };
+
   return (
     <View style={styles.page}>
       {/* FOR HEADER CAN BE REUSABLE */}
@@ -125,15 +158,16 @@ const ProductDetails = ({route}) => {
             <Text style={{...FONTS.body4, color: COLORS.black}}>
               Description
             </Text>
-            <TouchableOpacity onPress={() => setNumOfLine(5)}>
+            <TouchableOpacity activeOpacity={0.7} onPress={toggleNumOfLines}>
               <Text
-                numberOfLines={numOfLine}
+                numberOfLines={numOfLines}
                 style={{
                   ...FONTS.body5,
                   color: COLORS.chocolate,
                 }}>
                 {productData?.description}
               </Text>
+              {renderSeeMoreLess()}
             </TouchableOpacity>
           </View>
         </View>
