@@ -24,7 +24,6 @@ const UploadScreenDetails = () => {
     {label: 'Fashion', value: 'Fashio'},
     {label: 'Books', value: 'Books'},
     {label: 'Shoe', value: 'Shoe'},
-    // {label: 'Hockeys', value: 'hockeyw'},
   ]);
 
   const [productData, setProductData] = useState({
@@ -51,7 +50,7 @@ const UploadScreenDetails = () => {
       createdAt: Date.now(),
       productImage: [
         {
-          img: 'https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+          img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1703860688/image5_sghbti.png',
         },
         {
           img: 'https://res.cloudinary.com/dr0nfchqe/image/upload/v1702585949/image1_gwseon.png',
@@ -148,7 +147,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 4,
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
   },
   inputAndroid: {
     fontSize: 16,
@@ -158,7 +157,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderColor: 'purple',
     borderRadius: 8,
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
   },
 });
 

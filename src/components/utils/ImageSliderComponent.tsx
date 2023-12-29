@@ -2,7 +2,6 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import {ImageSlider} from 'react-native-image-slider-banner';
-import {icons} from '../../constants';
 
 const ImageSliderComponent = ({imgData}) => {
   return (
@@ -11,10 +10,11 @@ const ImageSliderComponent = ({imgData}) => {
         preview={false}
         data={imgData}
         // autoPlay={true}
+
         closeIconColor="#fff"
         caroselImageContainerStyle={{
-          height: SIZES.height * 0.38,
-          // width: SIZES.width,
+          height: SIZES.height * 0.4,
+          // width: SIZES.width ,
           // alignItems: 'center',
           // justifyContent: 'center',
           // alignSelf: 'center',
@@ -23,12 +23,9 @@ const ImageSliderComponent = ({imgData}) => {
         }}
         caroselImageStyle={{
           // borderRadius: 3,
-          height: SIZES.height * 0.38,
-          // width: SIZES.width,
-          // alignItems: 'center',
-          // justifyContent: 'center',
-          // alignSelf: 'center',
-          // resizeMode: 'contain',
+          height: SIZES.height * 0.4,
+          width: SIZES.width * 0.93,
+          resizeMode: 'contain',
         }}
         activeIndicatorStyle={{
           backgroundColor: COLORS.secondary,
