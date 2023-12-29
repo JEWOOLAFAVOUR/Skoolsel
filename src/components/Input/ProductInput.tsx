@@ -8,7 +8,14 @@ import {
 import React from 'react';
 import {COLORS, SIZES, FONTS, icons} from '../../constants';
 
-const ProductInput = ({placeholder, btnCtn, value, setValue, keyboardType,  multiline}) => {
+const ProductInput = ({
+  placeholder,
+  btnCtn,
+  value,
+  setValue,
+  keyboardType,
+  multiline,
+}) => {
   return (
     <View style={[styles.container, btnCtn]}>
       <TextInput
@@ -17,7 +24,7 @@ const ProductInput = ({placeholder, btnCtn, value, setValue, keyboardType,  mult
         onChangeText={setValue}
         placeholderTextColor={COLORS.chocolate}
         keyboardType={keyboardType}
-        multiline-{ multiline}
+        // multiline-{multiline}
         style={{...FONTS.body3c, color: COLORS.black}}
       />
     </View>
