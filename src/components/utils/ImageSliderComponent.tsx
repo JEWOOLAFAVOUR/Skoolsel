@@ -3,29 +3,19 @@ import React from 'react';
 import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import {ImageSlider} from 'react-native-image-slider-banner';
 
-const ImageSliderComponent = ({imgData}) => {
+const ImageSliderComponent = ({imgData, btnCtn}) => {
   return (
     <View>
       <ImageSlider
         preview={false}
         data={imgData}
-        // autoPlay={true}
-
         closeIconColor="#fff"
-        caroselImageContainerStyle={{
-          height: SIZES.height * 0.4,
-          // width: SIZES.width ,
-          // alignItems: 'center',
-          // justifyContent: 'center',
-          // alignSelf: 'center',
-          top: SIZES.base,
-          borderRadius: SIZES.h5,
-        }}
+        caroselImageContainerStyle={[styles.container, btnCtn]}
         caroselImageStyle={{
-          // borderRadius: 3,
           height: SIZES.height * 0.4,
-          width: SIZES.width * 0.93,
-          resizeMode: 'contain',
+          width: SIZES.width * 0.92,
+          resizeMode: 'cover',
+          marginRight: SIZES.base,
         }}
         activeIndicatorStyle={{
           backgroundColor: COLORS.secondary,
@@ -47,4 +37,12 @@ const ImageSliderComponent = ({imgData}) => {
 
 export default ImageSliderComponent;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    height: SIZES.height * 0.4,
+    width: SIZES.width * 0.92,
+    top: SIZES.base,
+    borderRadius: SIZES.h5,
+    resizeMode: 'cover',
+  },
+});

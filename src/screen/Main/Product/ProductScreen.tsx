@@ -134,7 +134,6 @@ const ProductScreen = () => {
             // ListEmptyComponent={RenderEmpty}
             renderItem={({item}) => {
               const showMore = showMoreStates[item.id] || false;
-              const formattedTime = formatTimeAgo(item.createdAt);
               return (
                 <TouchableOpacity
                   activeOpacity={0.7}
@@ -202,12 +201,11 @@ const ProductScreen = () => {
                     {/*SECOND PART */}
                     <View>
                       {/* SLIDER */}
-                      <View
-                        style={{
-                          paddingHorizontal: SIZES.width * 0.02,
-                          // backgroundColor: 'red',
-                        }}>
-                        <ImageSliderComponent imgData={item.productImage} />
+                      <View style={{}}>
+                        <ImageSliderComponent
+                          imgData={item.productImage}
+                          btnCtn={{marginHorizontal: SIZES.width * 0.04}}
+                        />
                         <View style={styles.priceCtn}>
                           <Text style={{...FONTS.body4, color: COLORS.white}}>
                             ₦{item.price}

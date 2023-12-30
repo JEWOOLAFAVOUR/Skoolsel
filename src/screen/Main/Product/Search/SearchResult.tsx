@@ -50,22 +50,6 @@ const SearchResult = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        {/*  <TouchableOpacity
-          onPress={() => navigation.navigate('SearchScreen')}
-          style={styles.container}>
-          <Image
-            source={icons.search}
-            style={{
-              height: SIZES.h3,
-              width: SIZES.h3,
-              marginRight: SIZES.base * 0.5,
-            }}
-          />
-          <Text style={{...FONTS.body4, color: COLORS.black}}>
-            search product
-          </Text>
-        </TouchableOpacity>
-          */}
         <View style={styles.container}>
           <Image
             source={icons.search}
@@ -125,7 +109,7 @@ const SearchResult = () => {
               <View style={{marginBottom: SIZES.h4}}>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('ProductDetails')}
-                  activeOpacity={0.95}
+                  activeOpacity={0.8}
                   style={styles.searchContainer}>
                   <Image
                     source={{uri: item.productImage}}

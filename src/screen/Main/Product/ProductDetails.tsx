@@ -32,7 +32,10 @@ const ProductDetails = ({route}) => {
       />
       {/* IMAGE SLIDER */}
       <ScrollView>
-        <ImageSliderComponent imgData={productData.productImage} />
+        <ImageSliderComponent
+          imgData={productData.productImage}
+          btnCtn={{marginHorizontal: SIZES.width * 0.04}}
+        />
         {/* DESCRIPTION AND OTHERS */}
         <View
           style={{paddingHorizontal: SIZES.width * 0.04, paddingTop: SIZES.h1}}>
